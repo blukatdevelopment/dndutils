@@ -5,13 +5,13 @@ sys.path.append('../')
 
 from dice import *
 from business import Business
-import datetime
 import json
+import datetime
 
 BUSINESS_FILE_NAME='./businesses.json'
 
-HANDLE_IN_MEMORY = True
-WEEKS_PER_SIMULATION = 10
+HANDLE_IN_MEMORY = False
+WEEKS_PER_SIMULATION = 50
 in_memory_cache = None
 
 def get_businesses():
@@ -31,17 +31,29 @@ def save_businesses(businesses):
     in_memory_cache = businesses
     return
 
+  serialized = []
+  logs = []
+  for business in businesses:
+    logs = logs + business.history_log
+    business.history_log = []
+    serialized.append(business.__dict__)
+  
+  logs_file = './logs/{:%Y%m%d%H%M%S_%f}.json'.format(datetime.datetime.now())
+
   with open(BUSINESS_FILE_NAME, 'w') as json_file:
-    raw = json.dumps(businesses, indent=4)
+    raw = json.dumps(serialized, indent=4)
     json_file.write(raw)
+
+  with open(logs_file, 'w') as json_file:
+    raw = json.dumps(logs, indent=4)
+    json_file.write(raw)
+
 
 def run_update():
   businesses = get_businesses()
-  updated = []
   for business in businesses:
     business.update()
-    updated.append(business)
-  save_businesses(updated)
+  save_businesses(businesses)
 
 def market_analysis():
   records = []
@@ -49,8 +61,5 @@ def market_analysis():
     run_update()
   for business in get_businesses():
     print(json.dumps(business.__dict__, indent=4))
-
-def timestamp():
-  return '{:%Y%m%d%H%M%S}'.format(datetime.datetime.now())
 
 market_analysis()

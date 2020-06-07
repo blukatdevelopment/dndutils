@@ -1,9 +1,11 @@
 [
     {
-        "name": "Example Business",
-        "owner": "Example Owner",
-        "value": 300,
+        "name": "Aggressive Business",
+        "owner": "benjamin",
+        "value": 16196.535473398117,
+        "savings": 3478.622863944336,
         "reinvestment_rate": 0.75,
-        "savings": 100.00
+        "save_history": true,
+        "history_log": []
     }
 ]

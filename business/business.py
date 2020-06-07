@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 from dice import roll_die
+import datetime
 
 # Outcomes
 DISASTER = "Disaster"
@@ -13,13 +14,16 @@ SPECTACULAR = "Spectacular"
 BOOMING = "Booming"
 
 class Business:
-  def __init__(self, name=None, value=None, savings=None, owner=None, reinvestment_rate=None, json_obj=None, save_history=False):
+  def __init__(self, name=None, value=None, savings=None, owner=None, history_log=None, reinvestment_rate=None, json_obj=None, save_history=False):
+    print("json{}".format(json_obj))
     if json_obj is not None:
       name = json_obj['name']
       value = json_obj['value']
       savings = json_obj['savings']
       owner = json_obj['owner']
       reinvestment_rate = json_obj['reinvestment_rate']
+      if 'history_log' in json_obj:
+        history_log = json_obj['history_log']
 
     self.name = name
     self.owner = owner
@@ -27,12 +31,16 @@ class Business:
     self.savings = savings
     self.reinvestment_rate = reinvestment_rate
     self.save_history = save_history
-    self.history_log = []
+    if history_log is None:
+      history_log = []
+    self.history_log = history_log
 
   def update(self):
     income = self.roll_income()
 
     log_record = {}
+    log_record["name"] = self.name
+    log_record["owner"] = self.owner
     log_record["start_value"] = self.value
     log_record["start_savings"] = self.savings
 
@@ -40,6 +48,7 @@ class Business:
 
     log_record["end_value"] = self.value
     log_record["end_savings"] = self.savings
+    log_record["timestamp"] = '{:%Y%m%d%H%M%S}'.format(datetime.datetime.now())
 
     if self.save_history:
       self.history_log.append(log_record)
