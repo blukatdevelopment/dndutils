@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 from dice import roll_die
-import datetime
 
 # Outcomes
 DISASTER = "Disaster"
@@ -48,7 +47,7 @@ class Business:
 
     log_record["end_value"] = self.value
     log_record["end_savings"] = self.savings
-    log_record["timestamp"] = '{:%Y%m%d%H%M%S}'.format(datetime.datetime.now())
+    log_record["timestamp"] = 
 
     if self.save_history:
       self.history_log.append(log_record)
