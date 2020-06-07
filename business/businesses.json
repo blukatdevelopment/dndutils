@@ -1,0 +1,9 @@
+[
+    {
+        "name": "Example Business",
+        "owner": "Example Owner",
+        "value": 300,
+        "reinvestment_rate": 0.75,
+        "savings": 100.00
+    }
+]
