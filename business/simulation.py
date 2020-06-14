@@ -62,4 +62,37 @@ def market_analysis():
   for business in get_businesses():
     print(json.dumps(business.__dict__, indent=4))
 
-market_analysis()
+def get_businesses_by_owner(owner):
+  ret = []
+  for business in get_businesses():
+    if business.owner == owner:
+      ret.append(business)
+  return ret
+
+def calculate_owner_income(owner, print_out=False):
+  businesses = get_businesses_by_owner(owner)
+  net_income = 0
+  
+  for business in businesses:
+    income = business.roll_income()
+    net_income += income["income"]
+    if print_out:
+      print("{} ({} - {}) - {}".format(income["income"], income["roll"], income["outcome"], business.name))
+  if print_out:
+    print("Total: {}".format(net_income))
+  return net_income
+
+def get_owners():
+  owners = []
+  for business in get_businesses():
+    if business.owner not in owners:
+      owners.append(business.owner)
+  return owners
+
+def determine_owners_income():
+  owners = get_owners()
+  for owner in owners:
+    income = calculate_owner_income(owner)
+    print("{} earned {}".format(owner, income))
+
+determine_owners_income()

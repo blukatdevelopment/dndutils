@@ -14,7 +14,6 @@ BOOMING = "Booming"
 
 class Business:
   def __init__(self, name=None, value=None, savings=None, owner=None, history_log=None, reinvestment_rate=None, json_obj=None, save_history=False):
-    print("json{}".format(json_obj))
     if json_obj is not None:
       name = json_obj['name']
       value = json_obj['value']
@@ -35,7 +34,7 @@ class Business:
     self.history_log = history_log
 
   def update(self):
-    income = self.roll_income()
+    income = self.roll_income()["income"]
 
     log_record = {}
     log_record["name"] = self.name
@@ -47,7 +46,6 @@ class Business:
 
     log_record["end_value"] = self.value
     log_record["end_savings"] = self.savings
-    log_record["timestamp"] = 
 
     if self.save_history:
       self.history_log.append(log_record)
@@ -86,8 +84,11 @@ class Business:
   def roll_income(self):
     if self.value < 1:
       return 0
-    outcome = self.map_roll_to_outcome(roll_die(100)['result'])
-    return self.determine_income(outcome, self.value)
+
+    roll = roll_die(100)['result']
+    outcome = self.map_roll_to_outcome(roll)
+    income = self.determine_income(outcome, self.value)
+    return {"roll": roll, "outcome": outcome, "income": income}
 
   def map_roll_to_outcome(self, roll):
     if roll < 2:

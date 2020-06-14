@@ -1,11 +1,119 @@
 [
     {
-        "name": "Aggressive Business",
-        "owner": "benjamin",
-        "value": 16196.535473398117,
-        "savings": 3478.622863944336,
-        "reinvestment_rate": 0.75,
-        "save_history": true,
+        "name": "Tobasco's Commissions",
+        "owner": "clank",
+        "value": 50,
+        "savings": 0,
+        "reinvestment_rate": 0,
+        "save_history": false,
+        "history_log": []
+    },
+    {
+        "name": "Tobasco's 'medical' services",
+        "owner": "clank",
+        "value": 50,
+        "savings": 0,
+        "reinvestment_rate": 0,
+        "save_history": false,
+        "history_log": []
+    },
+    {
+        "name": "Tobasco's Eats",
+        "owner": "clank",
+        "value": 50,
+        "savings": 0,
+        "reinvestment_rate": 0,
+        "save_history": false,
+        "history_log": []
+    },
+    {
+        "name": "Tobasco Towers",
+        "owner": "clank",
+        "value": 50,
+        "savings": 0,
+        "reinvestment_rate": 0,
+        "save_history": false,
+        "history_log": []
+    },
+    {
+        "name": "Tobasco's Sweets",
+        "owner": "clank",
+        "value": 50,
+        "savings": 0,
+        "reinvestment_rate": 0,
+        "save_history": false,
+        "history_log": []
+    },
+    {
+        "name": "Tobasco's Exotic Flames",
+        "owner": "clank",
+        "value": 50,
+        "savings": 0,
+        "reinvestment_rate": 0,
+        "save_history": false,
+        "history_log": []
+    },
+    {
+        "name": "Tobasco's Instant Dry-Clean",
+        "owner": "clank",
+        "value": 50,
+        "savings": 0,
+        "reinvestment_rate": 0,
+        "save_history": false,
+        "history_log": []
+    },
+    {
+        "name": "Tobasco Translations",
+        "owner": "clank",
+        "value": 50,
+        "savings": 0,
+        "reinvestment_rate": 0,
+        "save_history": false,
+        "history_log": []
+    },
+    {
+        "name": "Tobasco Theater",
+        "owner": "clank",
+        "value": 50,
+        "savings": 0,
+        "reinvestment_rate": 0,
+        "save_history": false,
+        "history_log": []
+    },
+    {
+        "name": "Tandris Broadcasting Company",
+        "owner": "clank",
+        "value": 50,
+        "savings": 0,
+        "reinvestment_rate": 0,
+        "save_history": false,
+        "history_log": []
+    },
+    {
+        "name": "Tobasco’s knee-high Wizards",
+        "owner": "clank",
+        "value": 50,
+        "savings": 0,
+        "reinvestment_rate": 0,
+        "save_history": false,
+        "history_log": []
+    },
+    {
+        "name": "Tobasco Builders",
+        "owner": "clank",
+        "value": 50,
+        "savings": 0,
+        "reinvestment_rate": 0,
+        "save_history": false,
+        "history_log": []
+    },
+    {
+        "name": "Tobasco's Cuts",
+        "owner": "clank",
+        "value": 50,
+        "savings": 0,
+        "reinvestment_rate": 0,
+        "save_history": false,
         "history_log": []
     }
 ]
