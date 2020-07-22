@@ -25,7 +25,6 @@ class Army:
     return min(roll, self.strength)
 
 def main():
-  print("{}, {}".format(sys.argv[1], sys.argv[2]))
 
   if(len(sys.argv) == 3):
     simulation(Army(int(sys.argv[1])), Army(int(sys.argv[2])))
