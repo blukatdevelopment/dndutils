@@ -4,6 +4,28 @@
 import random
 random.seed()
 
+def roll_result(die_size, modifier = 0, advantage = False, disadvantage = False):
+    return roll_die(die_size, modifier, advantage, disadvantage)['result']
+
+def roll_mass_result(num_rolls, modifier, dc, advantage = False, disadvantage = False, print_results=False):
+  successes = 0
+  for i in range(num_rolls):
+    roll = roll_die(20, modifier, True)
+    result = roll["result"]
+
+    if(result >= dc):
+      successes += 1
+      if(print_results):
+        print("{} [success]".format(roll["description"]))
+    else:
+      if(print_results):
+        print("{} [fail]".format(roll["description"]))
+
+  if(print_results):
+    print("Performed {} rolls with {} VS DC of {}. {} successes".format(num_rolls, modifier, dc, successes))
+
+  return successes
+
 def roll_die(die_size, modifier = 0, advantage = False, disadvantage = False):
     first = random.randint(1, die_size)
     second = random.randint(1, die_size)
