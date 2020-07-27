@@ -4,27 +4,49 @@
 import random
 random.seed()
 
+DISCORD_ENABLED=True
+
+
+def discord_enabled():
+    return DISCORD_ENABLED
+
 def roll_result(die_size, modifier = 0, advantage = False, disadvantage = False):
     return roll_die(die_size, modifier, advantage, disadvantage)['result']
 
-def roll_mass_result(num_rolls, modifier, dc, advantage = False, disadvantage = False, print_results=False):
+def roll_mass(num_rolls, modifier, dc, advantage = False, disadvantage = False, print_results=False):
   successes = 0
+  outcomes = []
+
   for i in range(num_rolls):
     roll = roll_die(20, modifier, True)
     result = roll["result"]
 
     if(result >= dc):
       successes += 1
-      if(print_results):
-        print("{} [success]".format(roll["description"]))
+      outcomes.append("{} [success]".format(roll["description"]))
     else:
-      if(print_results):
-        print("{} [fail]".format(roll["description"]))
+      outcomes.append("{} [fail]".format(roll["description"]))
 
-  if(print_results):
-    print("Performed {} rolls with {} VS DC of {}. {} successes".format(num_rolls, modifier, dc, successes))
+  description = "Performed {} rolls with {} VS DC of {}. {} successes".format(num_rolls, modifier, dc, successes)
 
-  return successes
+  return {
+    "successes": successes,
+    "outcomes": outcomes,
+    "description": description
+  }
+
+def roll_dice(quantity, size, modifier=0):
+    rolls = []
+    result = modifier
+    for i in range(quantity):
+        roll = roll_die(size)
+        rolls.append(roll)
+        result += roll["result"]
+
+    return {
+        "result": result,
+        "rolls": rolls
+    }
 
 def roll_die(die_size, modifier = 0, advantage = False, disadvantage = False):
     first = random.randint(1, die_size)

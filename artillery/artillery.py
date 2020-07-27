@@ -4,9 +4,10 @@ import sys
 sys.path.append('../')
 from dice import roll_die
 from tkinter import *
+from discord_chat import send_message_to_discord
 
 FEET_PER_INCREMENT = 5
-
+ENABLE_DISCORD = True
 
 def artillery_inaccuracy():
   direction = calculate_direction()
@@ -51,11 +52,11 @@ class ArtilleryGUI:
   def display_innacuracy(self):
     inaccuracy = artillery_inaccuracy()
     self.label['text'] = inaccuracy['description']
+    if(ENABLE_DISCORD):
+      send_message_to_discord(inaccuracy['description'])
 
 def main():
   root = Tk()
   root.title('Artillery inaccuracy')
   gui = ArtilleryGUI(root)
-  root.mainloop()  
-
-main()
+  root.mainloop()
