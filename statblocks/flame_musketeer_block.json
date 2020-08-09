@@ -1,0 +1,72 @@
+{
+	"name": "Flame Musketeer Block",
+	"size": "H",
+	"type": {
+		"type": "humanoid",
+		"swarmSize": "M"
+	},
+	"source": "TESTTOKEN",
+	"alignment": [
+		"A"
+	],
+	"ac": [
+		{
+			"ac": 14,
+			"from": [
+				"{@item leather armor|phb}"
+			]
+		}
+	],
+	"hp": {
+		"formula": "30d8 + 15",
+		"average": 150
+	},
+	"speed": {
+		"walk": 30
+	},
+	"str": 12,
+	"dex": 16,
+	"con": 12,
+	"int": 10,
+	"wis": 12,
+	"cha": 10,
+	"passive": 13,
+	"cr": "5",
+	"languages": [
+		"Common"
+	],
+	"languageTags": [
+		"C"
+	],
+	"skill": {
+		"perception": "+3"
+	},
+	"trait": [
+		{
+			"name": "Routed",
+			"entries": [
+				"If a flame musketeer block is reduced to less than half of its maximum hit points, it must make a DC12 wisdom saving throw or use its reaction to move its movement speed away from the source of the damage. If the militia block fails by more than 5, it scatters and is neutralized."
+			]
+		},
+		{
+			"name": "Tightly Packed",
+			"entries": [
+				"If a flame musketeer block is effected by an area of effect attack, the amount of damage is multiplied by the number of squares overlapping with it, maximum 6."
+			]
+		}
+	],
+	"action": [
+		{
+			"name": "Partial Volley",
+			"entries": [
+				"Select a 20ft cube centered on a point within 80 feet. Every creature in that cube must make a {@dc 14} dexterity saving throw or take  {@damage 2d20} fire damage(or {@damage 1d20} fire damage if the block has less than half of its maximum hit points)."
+			]
+		},
+		{
+			"name": "Full Volley",
+			"entries": [
+				"Select a 40ft cube centered on a point within 100 feet. Every creature in that cube must make a {@dc 16} dexterity saving throw or take  {@damage 2d20} fire damage(or {@damage 1d20} fire damage if the block has less than half of its maximum hit points). In order to use a Partial Volley or Full Volley again again, the block must use an action to reload its flame muskets."
+			]
+		}
+	]
+}

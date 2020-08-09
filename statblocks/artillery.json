@@ -1,0 +1,97 @@
+{
+	"_meta": {
+		"sources": [
+			{
+				"json": "TESTTOKEN",
+				"abbreviation": "TNDRS",
+				"full": "Tandris",
+				"url": "",
+				"authors": [],
+				"convertedBy": []
+			}
+		],
+		"dateAdded": 1595834764,
+		"dateLastModified": 1595834764
+	},
+	"monster": [
+		{
+			"name": "Artillery",
+			"source": "TESTTOKEN",
+			"size": "L",
+			"type": {
+				"type": "humanoid",
+				"swarmSize": "M"
+			},
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				12
+			],
+			"hp": {
+				"special": "20"
+			},
+			"speed": {
+				"walk": {
+					"number": 20,
+					"condition": "30 with mount"
+				}
+			},
+			"str": 12,
+			"dex": 12,
+			"con": 12,
+			"int": 12,
+			"wis": 12,
+			"cha": 12,
+			"passive": 11,
+			"vulnerable": [],
+			"languages": [
+				"Common"
+			],
+			"cr": "5",
+			"fluff": {
+				"entries": [
+					"Artillery of Tandris"
+				]
+			},
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"P"
+			],
+			"action": [
+				{
+					"name": "Artillery Strike",
+					"entries": [
+						"Select a point between 100ft and 1000ft away. ",
+						"Roll a {@dice D8} to determine the direction the shot will stray using the table below.",
+						"The shot will stray {@dice 1d8} times 5 feet in that direction.",
+						"-",
+						"--------------",
+						"|{@dice D8}| Direction ",
+						"--------------",
+						"| 1 | NorthWest",
+						"| 2 | North",
+						"| 3 | NorthEast",
+						"| 4 | West",
+						"| 5 | East",
+						"| 6 | SouthEast",
+						"| 7 | South        ",
+						"| 8 | SouthWest",
+						"--------------",
+						"-",
+						"The shot creates a fireball in a 20-foot-radius sphere centered on the impact",
+						"point. Each creature in a 20-foot-radius sphere centered on that point must make",
+						" a Dexterity saving throw. A target takes {@damage 8d6} fire damage on a failed save, or ",
+						"half as much damage on a successful one. The fire spreads around corners. It ",
+						"ignites flammable objects in the area that aren’t being worn or carried."
+					]
+				}
+			],
+			"miscTags": [
+				"AOE"
+			]
+		}
+	]
+}

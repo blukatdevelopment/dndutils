@@ -1,0 +1,74 @@
+{
+	"name": "Militia Soldier",
+	"size": "M",
+	"type": {
+		"type": "humanoid",
+		"tags": [
+			"Any"
+		]
+	},
+	"source": "TESTTOKEN",
+	"alignment": [
+		"A"
+	],
+	"ac": [
+		{
+			"ac": 12,
+			"from": [
+				"{@item leather armor|phb}"
+			]
+		}
+	],
+	"hp": {
+		"formula": "1d8 + 3",
+		"average": 7
+	},
+	"speed": {
+		"walk": 30
+	},
+	"str": 12,
+	"dex": 12,
+	"con": 12,
+	"int": 10,
+	"wis": 10,
+	"cha": 10,
+	"passive": 12,
+	"cr": "1/4",
+	"shortName": true,
+	"languages": [
+		"Common"
+	],
+	"languageTags": [
+		"C"
+	],
+	"save": {
+		"str": "+3",
+		"con": "+3"
+	},
+	"skill": {
+		"perception": "+2",
+		"athletics": "+3"
+	},
+	"action": [
+		{
+			"name": "Light Crossbow",
+			"entries": [
+				"{@atk rw} {@hit 3} to hit, range 80/320 ft., one target. {@h}6 ({@damage 1d8 + 2}) piercing damage."
+			]
+		},
+		{
+			"name": "Dagger",
+			"entries": [
+				"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d4 + 2}) piercing damage."
+			]
+		}
+	],
+	"damageTags": [
+		"P"
+	],
+	"miscTags": [
+		"RW",
+		"RNG",
+		"MW"
+	]
+}

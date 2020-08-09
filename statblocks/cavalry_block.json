@@ -1,0 +1,69 @@
+{
+	"name": "Cavalry Block",
+	"size": "L",
+	"type": {
+		"type": "humanoid",
+		"swarmSize": "M"
+	},
+	"source": "TESTTOKEN",
+	"alignment": [
+		"A"
+	],
+	"ac": [
+		{
+			"ac": 18,
+			"from": [
+				"{@item chain mail|phb}",
+				"{@item shield|phb}"
+			]
+		}
+	],
+	"hp": {
+		"formula": "12d10 + 34",
+		"average": 100
+	},
+	"speed": {
+		"walk": 60
+	},
+	"str": 18,
+	"dex": 16,
+	"con": 16,
+	"int": 10,
+	"wis": 12,
+	"cha": 14,
+	"passive": 11,
+	"cr": "5",
+	"shortName": true,
+	"save": {
+		"str": "+7",
+		"con": "+6"
+	},
+	"trait": [
+		{
+			"name": "Tightly Packed",
+			"entries": [
+				"If the cavalry block is effected by an area of effect attack that covers more than one square it is occupying, it receives double the damage."
+			]
+		},
+		{
+			"name": "Multiattack",
+			"entries": [
+				"The cavalry block can make two lance attacks."
+			]
+		},
+		{
+			"name": "Mounted",
+			"entries": [
+				"The cavalry block can dash using its bonus action."
+			]
+		}
+	],
+	"action": [
+		{
+			"name": "Lance",
+			"entries": [
+				"10ft range, +7, {@dice 2d12 + 8} piercing ({@dice 1d12 + 4} is block has less than half of max hit points)."
+			]
+		}
+	]
+}

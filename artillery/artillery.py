@@ -60,3 +60,4 @@ def main():
   root.title('Artillery inaccuracy')
   gui = ArtilleryGUI(root)
   root.mainloop()
+
