@@ -76,11 +76,11 @@ def magic_fumble(roll):
 def melee_fumble(roll):
   if roll == 1:
     damage = roll_dice(2, 6)["result"]
-    return "The attack is disabled until you complete a short or long rest, and you take {} slashing damage".format(damage)
+    return "The weapon breaks and you take {} slashing damage.".format(damage)
   elif roll == 2:
-    return "This attack is disabled until you complete a short or long rest"
+    return "The weapon breaks."
   elif roll < 11:
-    return "Minor sprain: take 1d6 bludgeoning damage when attacking until you use an action to sooth the injury."
+    return "Your attack hits you. Receive half damage."
   elif roll < 20:
     return "Your attack hits the first creature {} of you within range.".format(direction())
   else:
