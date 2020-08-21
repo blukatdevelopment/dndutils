@@ -3,6 +3,7 @@
 import sys
 sys.path.append('../')
 sys.path.append('../artillery/')
+sys.path.append('./artillery/')
 from discord_chat import send_message_to_discord
 from dice import roll_dice, roll_result, discord_enabled
 from artillery import calculate_direction
@@ -86,6 +87,7 @@ def melee_fumble(roll):
   else:
     return "You got lucky"
 
+# Use this as a standalone script on the command line.
 def main():
   if(len(sys.argv) == 2):
     arg = sys.argv[1]
@@ -93,5 +95,3 @@ def main():
     print(result)
   else:
     print("usage: <category>")
-
-main()

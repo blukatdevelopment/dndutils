@@ -26,8 +26,13 @@ def roll_mass(num_rolls, modifier, dc, advantage = False, disadvantage = False, 
       outcomes.append("{} [success]".format(roll["description"]))
     else:
       outcomes.append("{} [fail]".format(roll["description"]))
+  roll_type = "normal"
+  if(advantage):
+    roll_type = "advantage"
+  if(disadvantage):
+    roll_type = "disdvantage"
 
-  description = "Performed {} rolls with {} VS DC of {}. {} successes".format(num_rolls, modifier, dc, successes)
+  description = "Performed {} {} rolls with {} VS DC of {}. {} successes".format(num_rolls, roll_type, modifier, dc, successes)
 
   return {
     "successes": successes,

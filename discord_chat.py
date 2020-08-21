@@ -9,8 +9,8 @@ import json
 from main import base_path
 
 SETTINGS = base_path() + "settings.json"
-DISCORD_URI=None
-
+DISCORD_URI = None
+USE_DISCORD = False
 
 def get_discord_uri():
   if DISCORD_URI is not None:
@@ -22,6 +22,8 @@ def get_discord_uri():
     return settings["discord_uri"]
 
 def send_message_to_discord(message, print_output=False):
+  if(USE_DISCORD == False):
+    return
   if(print_output):
     print("Sending message to discord: {}".format(message))
   
