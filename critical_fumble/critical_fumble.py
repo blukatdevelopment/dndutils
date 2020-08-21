@@ -5,7 +5,7 @@ sys.path.append('../')
 sys.path.append('../artillery/')
 sys.path.append('./artillery/')
 from discord_chat import send_message_to_discord
-from dice import roll_dice, roll_result, discord_enabled
+from dice import roll_dice, roll_result
 from artillery import calculate_direction
 
 # Categories
@@ -30,8 +30,6 @@ def fumble(category):
 
   ret = "Critical {} fumble {}: {}".format(category, roll, result)
 
-  if discord_enabled():
-    send_message_to_discord(ret)
   return ret
 
 def direction():

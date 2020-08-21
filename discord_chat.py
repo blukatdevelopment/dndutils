@@ -10,7 +10,7 @@ from main import base_path
 
 SETTINGS = base_path() + "settings.json"
 DISCORD_URI = None
-USE_DISCORD = False
+USE_DISCORD = True
 
 def get_discord_uri():
   if DISCORD_URI is not None:
