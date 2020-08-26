@@ -1,0 +1,46 @@
+from flask_mysqldb import MySQL
+
+class Db:
+  def __init__(self, app):
+    self.app = app
+    self.mysql = MySQL(app)
+
+  def select(self, sql, values):
+    print("{}:{}".format(sql, values))
+    cur = self.mysql.connection.cursor()
+    cur.execute(sql, values)
+    data = cur.fetchall()
+    cur.close()
+    return data
+
+  def insert(self, sql, values):
+    print("{}:{}".format(sql, values))
+    cur = self.mysql.connection.cursor()
+    cur.execute(sql, values)
+    self.mysql.connection.commit()
+    cur.close() 
+
+  def insert_user(self, email, user_id, password, salt):
+    sql = "INSERT INTO users(username, pass_hash, salt, email) VALUES (%s, %s, %s, %s)"
+    values = [ email, user_id, password, salt ]
+    self.insert(sql, values)
+
+  def select_user_by_id(self, user_id):
+    sql = "SELECT * FROM users WHERE username = %s"
+    values = [user_id]
+    return self.select(sql, values)
+
+  def select_characters_by_user_uid(self, uid):
+    sql = "SELECT * FROM characters WHERE user_id = %s"
+    values = [uid,]
+    return self.select(sql, values)
+
+  def insert_character(self, user_id, character_id, character_data):
+    sql = "INSERT INTO characters(user_id, character_id, character_data) VALUES (%s, %s, %s)"
+    values = [str(user_id), str(character_id), str(character_data)]
+    self.insert(sql, values)
+
+  def select_character_by_id(self, character_id):
+    sql = "SELECT * FROM characters WHERE character_id = (%s)"
+    values = [str(character_id),]
+    return self.select(sql, values)

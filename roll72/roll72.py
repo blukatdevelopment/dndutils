@@ -1,7 +1,6 @@
 # Roll ability scores for a character
 import random
 
-MAX_ATTEMPTS = 1000000
 MIN_SCORE = 72
 
 # Returns a dict with accepted rolls, total, and minimum roll
@@ -18,7 +17,7 @@ def roll_4d6_drop_lowest():
   return result
 
 def roll_ability_scores():
-  for i in range(MAX_ATTEMPTS):
+  while True:
     sum = 0
     results = []
     for i in range(6):
@@ -48,5 +47,3 @@ def main():
     print("Could not roll higher than {} in {} attempts".format(MIN_SCORE, MAX_ATTEMPTS))
   else:
     print(format_results(results))
-
-main()
