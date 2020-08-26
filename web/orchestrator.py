@@ -128,6 +128,13 @@ class Orchestrator:
     self.store_character(character)
     return character
 
+  def get_characters_json_by_user_id(self, user_id):
+    characters = self.get_characters_by_user_id(user_id)
+    data = []
+    for character in characters:
+      data.append(character.get_json())
+    return data
+
   def get_characters_by_user_id(self, user_id):
     characters = []
     data = self.app.db.select_characters_by_user_uid(user_id)
@@ -148,6 +155,12 @@ class Orchestrator:
     character.ability_scores_array = self.generate_stat_array()
     character.user_id = user_id
     character.character_id = character_id
+    character.strength = character.ability_scores_array[0]
+    character.dexterity = character.ability_scores_array[1]
+    character.constitution = character.ability_scores_array[2]
+    character.intelligence = character.ability_scores_array[3]
+    character.wisdom = character.ability_scores_array[4]
+    character.charisma = character.ability_scores_array[5]
     return character
 
   def store_character(self, character):

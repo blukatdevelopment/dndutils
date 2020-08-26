@@ -73,7 +73,7 @@ def my_characters():
   if(not orc.is_logged_in(request)):
     return redirect(url_for('login'), code=302)
   user = orc.get_user(request)
-  characters = orc.get_characters_by_user_id(user.uid)
+  characters = orc.get_characters_json_by_user_id(user.uid)
   return render_template("my_characters.html", characters=characters)
 
 @app.route('/request_character', methods=['POST'])
@@ -81,12 +81,12 @@ def request_character():
   if(not orc.is_logged_in(request)):
     return "Forbidden", 401
   character = orc.request_character(request)
-  
+  print("request character finished")
   if character is None:
     return "Internal Server Error", 500
   return {
     "character_id": character.character_id,
-    "character": character.get_json
+    "character": character.get_json()
   }, 201
 
 @app.route('/character_roster', methods=['GET'])

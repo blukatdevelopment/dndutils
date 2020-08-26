@@ -4,7 +4,212 @@
 <script src="{{url_for('static', filename='characters.js')}}"></script>
 
 <h2>My Characters</h2>
-{% for character in characters %}
-  <p class="character_data" hidden>{{ character.get_json() }} <hidden>
+{% for character_data in characters %}
+  <p class="character_data" hidden>{{ character_data }} <hidden>
 {% endfor %}
+
 <div id="root"></div>
+<table id="header_table" style="border-style:solid">
+  <tr>
+    <td>Character Name<br>
+      <input type="text" id="character_name">
+    </td>
+    <td>
+      <table>
+        <tr>
+          <td>Class & Level<br><input type="text" id="class_and_level"></td>
+          <td>Background<br><input type="text" id="background"></td>
+          <td>Player Name<br><input type="text" id="player_name"></td>
+        </tr>
+        <tr>
+          <td>Race<br><input type="text" id="race"></td>
+          <td>Alignment<br><input type="text" id="alignment"></td>
+          <td>Experience Points<br><input type="text" id="experience_points"></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<table id="abilities_table" style="border-style:solid">
+  <tr>
+    <th>
+      <div class="ability" style="border-style:solid">
+        Strength<br>
+        <input type="text" id="strength" size="2" maxlength="2"><br>
+        <input type="text" id="strength_mod" size="2" maxlength="2">
+      </div>
+    </th>
+  </tr>
+  <tr>
+    <th>
+      <div class="ability" style="border-style:solid">
+        Dexterity<br>
+        <input type="text" id="dexterity" size="2" maxlength="2"><br>
+        <input type="text" id="dexterity_mod" size="2" maxlength="2">
+      </div>
+    </th>
+  </tr>
+  <tr>
+    <th>
+      <div class="ability" style="border-style:solid">
+        Constitution<br>
+        <input type="text" id="constitution" size="2" maxlength="2"><br>
+        <input type="text" id="constitution_mod" size="2" maxlength="2">
+      </div>
+    </th>
+  </tr>
+  <tr>
+    <th>
+      <div class="ability" style="border-style:solid">
+        Intelligence<br>
+        <input type="text" id="intelligence" size="2" maxlength="2"><br>
+        <input type="text" id="intelligence_mod" size="2" maxlength="2">
+      </div>
+    </th>
+  </tr>
+  <tr>
+    <th>
+      <div class="ability" style="border-style:solid">
+        Wisdom<br>
+        <input type="text" id="wisdom" size="2" maxlength="2"><br>
+        <input type="text" id="wisdom_mod" size="2" maxlength="2">
+      </div>
+    </th>
+  </tr>
+  <tr>
+    <th>
+      <div class="ability" style="border-style:solid">
+        Charisma<br>
+        <input type="text" id="charisma" size="2" maxlength="2"><br>
+        <input type="text" id="charisma_mod" size="2" maxlength="2">
+      </div>
+    </th>
+  </tr>
+</table>
+
+<table id="saving_throws_table" style="border-style:solid">
+  <tr>
+    <td><input type="checkbox" id="strength_save_prof"></td>
+    <td>Strength</td>
+    <td><input type="text" id="strength_save" size="3" maxlength="3"></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" id="dexterity_save_prof"></td>
+    <td>Dexterity</td>
+    <td><input type="text" id="dexterity_save" size="3" maxlength="3"></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" id="constitution_save_prof"></td>
+    <td>Constitution</td>
+    <td><input type="text" id="constitution_save" size="3" maxlength="3"></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" id="intelligence_save_prof"></td>
+    <td>Intelligence</td>
+    <td><input type="text" id="intelligence_save" size="3" maxlength="3"></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" id="wisdom_save_prof"></td>
+    <td>Wisdom</td>
+    <td><input type="text" id="wisdom_save" size="3" maxlength="3"></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" id="charisma_save_prof"></td>
+    <td>Charisma</td>
+    <td><input type="text" id="charisma_save" size="3" maxlength="3"></td>
+  </tr>
+</table>
+
+<table id="skills_table" style="border-style:solid">
+  <tr>
+    <td><input type="checkbox" id="acrobatics_prof"></td>
+    <td>Acrobatics</td>
+    <td><input type="text" id="acrobatics" size="3" maxlength="3"></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" id="animal_handling_prof"></td>
+    <td>Animal Handling</td>
+    <td><input type="text" id="animal_handling" size="3" maxlength="3"></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" id="arcana_prof"></td>
+    <td>Arcana</td>
+    <td><input type="text" id="arcana" size="3" maxlength="3"></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" id="athletics_prof"></td>
+    <td>Athletics</td>
+    <td><input type="text" id="athletics" size="3" maxlength="3"></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" id="deception_prof"></td>
+    <td>Deception</td>
+    <td><input type="text" id="deception" size="3" maxlength="3"></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" id="history_prof"></td>
+    <td>History</td>
+    <td><input type="text" id="history" size="3" maxlength="3"></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" id="insight_prof"></td>
+    <td>Insight</td>
+    <td><input type="text" id="insight" size="3" maxlength="3"></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" id="intimidation_prof"></td>
+    <td>Intimidation</td>
+    <td><input type="text" id="intimidation" size="3" maxlength="3"></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" id="investigation_prof"></td>
+    <td>Investigation</td>
+    <td><input type="text" id="investigation" size="3" maxlength="3"></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" id="medicine_prof"></td>
+    <td>Medicine</td>
+    <td><input type="text" id="medicine" size="3" maxlength="3"></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" id="nature_prof"></td>
+    <td>Nature</td>
+    <td><input type="text" id="nature" size="3" maxlength="3"></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" id="perception_prof"></td>
+    <td>Perception</td>
+    <td><input type="text" id="perception" size="3" maxlength="3"></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" id="persuasion_prof"></td>
+    <td>Persuasion</td>
+    <td><input type="text" id="persuasion" size="3" maxlength="3"></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" id="religion_prof"></td>
+    <td>Religion</td>
+    <td><input type="text" id="religion" size="3" maxlength="3"></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" id="sleight_of_hand_prof"></td>
+    <td>Sleight of Hand</td>
+    <td><input type="text" id="sleight_of_hand" size="3" maxlength="3"></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" id="stealth_prof"></td>
+    <td>Stealth</td>
+    <td><input type="text" id="stealth" size="3" maxlength="3"></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" id="survival_prof"></td>
+    <td>Survival</td>
+    <td><input type="text" id="survival" size="3" maxlength="3"></td>
+  </tr>
+</table>
+
+<table id="known_spells_table" style="border-style:solid"></table>
+<table id="inventory_table" style="border-style:solid"></table>
+<table id="currency_table" style="border-style:solid"></table>
+<table id="features_and_traits_table" style="border-style:solid"></table>
