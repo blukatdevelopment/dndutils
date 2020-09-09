@@ -47,3 +47,6 @@ def main():
     print("Could not roll higher than {} in {} attempts".format(MIN_SCORE, MAX_ATTEMPTS))
   else:
     print(format_results(results))
+
+#uncomment this to run locally
+#main()

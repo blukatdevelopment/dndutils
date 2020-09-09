@@ -20,6 +20,13 @@ class Db:
     self.mysql.connection.commit()
     cur.close() 
 
+  def update(self, sql, values):
+    print("{}:{}".format(sql, values))
+    cur = self.mysql.connection.cursor()
+    cur.execute(sql, values)
+    self.mysql.connection.commit()
+    cur.close() 
+
   def insert_user(self, email, user_id, password, salt):
     sql = "INSERT INTO users(username, pass_hash, salt, email) VALUES (%s, %s, %s, %s)"
     values = [ email, user_id, password, salt ]
@@ -39,6 +46,11 @@ class Db:
     sql = "INSERT INTO characters(user_id, character_id, character_data) VALUES (%s, %s, %s)"
     values = [str(user_id), str(character_id), str(character_data)]
     self.insert(sql, values)
+
+  def update_character(self, user_id, character_id, character_data):
+    sql = "UPDATE characters SET character_data = %s WHERE user_id = %s AND character_id = %s"
+    values = [str(character_data), str(user_id), str(character_id)]
+    self.update(sql, values)
 
   def select_character_by_id(self, character_id):
     sql = "SELECT * FROM characters WHERE character_id = (%s)"

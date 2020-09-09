@@ -89,6 +89,18 @@ def request_character():
     "character": character.get_json()
   }, 201
 
+@app.route('/update_character', methods=['POST'])
+def update_character():
+  if(not orc.is_logged_in(request)):
+    return "Forbidden", 401
+  character = orc.update_character(request)
+  if character is None:
+    return "Internal Server Error", 500
+  return {
+    "character_id": character.character_id,
+    "character": character.get_json()
+  }, 201
+
 @app.route('/character_roster', methods=['GET'])
 def roster():
   return "Character roster"

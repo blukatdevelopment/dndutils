@@ -1,8 +1,10 @@
 import json
 
 class Character:
-  def __init__(self, raw=None):
+  def __init__(self, json_text=None):
     init_blank_fields(self)
+    if json_text is not None:
+        self.load_json(json_text)
 
   def load_json(self, json_text):
     data = json.loads(json_text)
@@ -20,12 +22,15 @@ class Character:
       for field in get_list_fields():
         value = getattr(self, field)
         if not isinstance(value, list):
+          print("{} was not a list".format(field))
           return False
       for field in get_string_fields():
         value = getattr(self, field)
-        if not isinstance(value, str):
+        if not isinstance(value, str) and not isinstance(value, int):
+          print("{} was not a string nor int".format(field))
           return False
     except Exception as e:
+      print("Encountered exception {}".format(e))
       return False
     return True
 
