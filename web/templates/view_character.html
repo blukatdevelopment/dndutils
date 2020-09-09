@@ -1,0 +1,403 @@
+
+<!DOCTYPE html>
+<script src="{{url_for('static', filename='jquery-3.5.1.min.js')}}"></script>
+<script src="{{url_for('static', filename='view_character.js')}}"></script>
+
+<h2>My Characters</h2>
+{% for character_data in characters %}
+  <p class="character_data" hidden>{{ character_data }} <hidden>
+{% endfor %}
+
+
+<div id="root"></div>
+<table id="header_table" style="border-style:solid">
+  <tr>
+    <td>Character Name<br>
+      <input type="text" id="character_name">
+    </td>
+    <td>
+      <table>
+        <tr>
+          <td>Class & Level<br><input type="text" id="class_and_level"></td>
+          <td>Background<br><input type="text" id="background"></td>
+          <td>Player Name<br><input type="text" id="player_name"></td>
+        </tr>
+        <tr>
+          <td>Race<br><input type="text" id="race"></td>
+          <td>Alignment<br><input type="text" id="alignment"></td>
+          <td>Experience Points<br><input type="text" id="experience_points"></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<div class="float-container">
+
+  <div style="float: left; width: 6%">
+    <table id="abilities_table" style="border-style:solid; min-height: 635px;">
+      <tr>
+        <th>
+          <div class="ability" style="border-style:solid">
+            Strength<br>
+            <input type="text" id="strength" size="2" maxlength="2"><br>
+            <input type="text" id="strength_mod" size="2" maxlength="2">
+          </div>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <div class="ability" style="border-style:solid">
+            Dexterity<br>
+            <input type="text" id="dexterity" size="2" maxlength="2"><br>
+            <input type="text" id="dexterity_mod" size="2" maxlength="2">
+          </div>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <div class="ability" style="border-style:solid">
+            Constitution<br>
+            <input type="text" id="constitution" size="2" maxlength="2"><br>
+            <input type="text" id="constitution_mod" size="2" maxlength="2">
+          </div>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <div class="ability" style="border-style:solid">
+            Intelligence<br>
+            <input type="text" id="intelligence" size="2" maxlength="2"><br>
+            <input type="text" id="intelligence_mod" size="2" maxlength="2">
+          </div>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <div class="ability" style="border-style:solid">
+            Wisdom<br>
+            <input type="text" id="wisdom" size="2" maxlength="2"><br>
+            <input type="text" id="wisdom_mod" size="2" maxlength="2">
+          </div>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <div class="ability" style="border-style:solid">
+            Charisma<br>
+            <input type="text" id="charisma" size="2" maxlength="2"><br>
+            <input type="text" id="charisma_mod" size="2" maxlength="2">
+          </div>
+        </th>
+      </tr>
+    </table>
+  </div>
+  
+  <div style="float: left; width: 11%">
+    <table id = "second_column">
+      <tr><td><table id="proficiency_bonus_table" style="border-style:solid; min-width: 200px;">
+        <tr>
+          <td><input type="text" size="3" maxlength="3" id="proficiency_bonus">Proficiency Bonus</td>
+        </tr>
+      </table></td></tr>
+      <tr><td><table id="saving_throws_table" style="border-style:solid; min-width: 200px;">
+        <tr>
+          <td><input type="checkbox" id="strength_save_prof"></td>
+          <td>Strength</td>
+          <td><input type="text" id="strength_save" size="3" maxlength="3"></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" id="dexterity_save_prof"></td>
+          <td>Dexterity</td>
+          <td><input type="text" id="dexterity_save" size="3" maxlength="3"></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" id="constitution_save_prof"></td>
+          <td>Constitution</td>
+          <td><input type="text" id="constitution_save" size="3" maxlength="3"></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" id="intelligence_save_prof"></td>
+          <td>Intelligence</td>
+          <td><input type="text" id="intelligence_save" size="3" maxlength="3"></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" id="wisdom_save_prof"></td>
+          <td>Wisdom</td>
+          <td><input type="text" id="wisdom_save" size="3" maxlength="3"></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" id="charisma_save_prof"></td>
+          <td>Charisma</td>
+          <td><input type="text" id="charisma_save" size="3" maxlength="3"></td>
+        </tr>
+      </table></td></tr>
+      <tr><td><table id="skills_table" style="border-style:solid; min-width: 200px;">
+        <tr>
+          <td><input type="checkbox" id="acrobatics_prof"></td>
+          <td>Acrobatics</td>
+          <td><input type="text" id="acrobatics" size="3" maxlength="3"></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" id="animal_handling_prof"></td>
+          <td>Animal Handling</td>
+          <td><input type="text" id="animal_handling" size="3" maxlength="3"></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" id="arcana_prof"></td>
+          <td>Arcana</td>
+          <td><input type="text" id="arcana" size="3" maxlength="3"></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" id="athletics_prof"></td>
+          <td>Athletics</td>
+          <td><input type="text" id="athletics" size="3" maxlength="3"></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" id="deception_prof"></td>
+          <td>Deception</td>
+          <td><input type="text" id="deception" size="3" maxlength="3"></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" id="history_prof"></td>
+          <td>History</td>
+          <td><input type="text" id="history" size="3" maxlength="3"></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" id="insight_prof"></td>
+          <td>Insight</td>
+          <td><input type="text" id="insight" size="3" maxlength="3"></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" id="intimidation_prof"></td>
+          <td>Intimidation</td>
+          <td><input type="text" id="intimidation" size="3" maxlength="3"></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" id="investigation_prof"></td>
+          <td>Investigation</td>
+          <td><input type="text" id="investigation" size="3" maxlength="3"></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" id="medicine_prof"></td>
+          <td>Medicine</td>
+          <td><input type="text" id="medicine" size="3" maxlength="3"></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" id="nature_prof"></td>
+          <td>Nature</td>
+          <td><input type="text" id="nature" size="3" maxlength="3"></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" id="perception_prof"></td>
+          <td>Perception</td>
+          <td><input type="text" id="perception" size="3" maxlength="3"></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" id="persuasion_prof"></td>
+          <td>Persuasion</td>
+          <td><input type="text" id="persuasion" size="3" maxlength="3"></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" id="religion_prof"></td>
+          <td>Religion</td>
+          <td><input type="text" id="religion" size="3" maxlength="3"></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" id="sleight_of_hand_prof"></td>
+          <td>Sleight of Hand</td>
+          <td><input type="text" id="sleight_of_hand" size="3" maxlength="3"></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" id="stealth_prof"></td>
+          <td>Stealth</td>
+          <td><input type="text" id="stealth" size="3" maxlength="3"></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" id="survival_prof"></td>
+          <td>Survival</td>
+          <td><input type="text" id="survival" size="3" maxlength="3"></td>
+        </tr>
+      </table></td></tr>
+      <tr><td>      </table>
+      <tr><td><table id="proficiencies_list" style="border-style:solid">
+          <tr><th>Other Proficiencies</th></tr>
+          <tr><td><input type="text" value="Example proficiency"></td></tr>
+          <tr><td><input type="text" value="Example proficiency"></td></tr>
+          <tr><td><input type="text" value="Example proficiency"></td></tr>
+          <tr><td><input type="text" value="Example proficiency"></td></tr>
+          <tr><td><input type="text" value="Example proficiency"></td></tr>
+          <tr><td><input type="text" value="Example proficiency"></td></tr>
+          <tr><td><input type="text" value="Example proficiency"></td></tr>
+          <tr><td><input type="text" value="Example proficiency"></td></tr>
+          <tr><td><input type="text" value="Example proficiency"></td></tr>
+          <tr><td><input type="text" value="Example proficiency"></td></tr>
+          <tr><td><input type="text" value="Example proficiency"></td></tr>
+          <tr><td><input type="text" value="Example proficiency"></td></tr>
+          <tr><td><input type="text" value="Example proficiency"></td></tr>
+          <tr><td><input type="text" value="Example proficiency"></td></tr>
+          <tr><td><input type="text" value="Example proficiency"></td></tr>
+          <tr><td><input type="text" value="Example proficiency"></td></tr>
+          <tr><td><input type="text" value="Example proficiency"></td></tr>
+          <tr><td><input type="text" value="Example proficiency"></td></tr>
+          <tr><td><input type="text" value="Example proficiency"></td></tr>
+          <tr><td><input type="text" value="Example proficiency"></td></tr>
+          <tr><td><input type="text" value="Example proficiency"></td></tr>
+        </table></tr></td>
+      </table></td></tr>
+    </table>
+  </div>
+  <div style="float: left; width: 20%">
+    <table id="third_column">
+      <tr><td><table id="middle_top_column" style="border-style:solid;">
+        <tr>
+          <td>
+            Armor Class<br>
+            <input type="text" id="armor_class" size="2" maxlength="2"><br>
+          </td>
+          <td>
+            Initiative<br>
+            <input type="text" id="initiative" size="2" maxlength="2"><br>
+          </td>
+          <td>
+            Speed<br>
+            <input type="text" id="speed" size="2"><br>
+          </td>
+        </tr>
+      </table></tr></td>
+      <tr><td><div style="border-style:solid;">
+        Maximum Hit Points<br>
+        <input type="text" id="hit_point_maximum" size="3" maxlength="3"><br>
+      </div></tr></td>
+      <tr><td><div style="border-style:solid;">
+        Hit Dice<br>
+        <input type="text" id="hit_dice"><br>
+      </div></tr></td>
+      <tr><td><table style="border-style:solid; min-height:150px;">
+        <tr>
+          <th>Attack</th>
+          <th>Atk Bonus</th>
+          <th>Damage</th>
+        </tr>
+        <tr>
+          <td><input type="text" id="attack_1" size="10"></td>
+          <td><input type="text" id="attack_bonus_1" size="3" maxlength="3"></td>
+          <td><input type="text" id="attack_damage_1" size="15"></td>
+        </tr>
+        <tr>
+          <td><input type="text" id="attack_2" size="10"></td>
+          <td><input type="text" id="attack_bonus_2" size="3" maxlength="3"></td>
+          <td><input type="text" id="attack_damage_2" size="15"></td>
+        </tr>
+        <tr>
+          <td><input type="text" id="attack_3" size="10"></td>
+          <td><input type="text" id="attack_bonus_3" size="3" maxlength="3"></td>
+          <td><input type="text" id="attack_damage_3" size="15"></td>
+        </tr>
+      </table></tr></td>
+      <tr><td><div style="border-style:solid; min-height:300px">
+        Spell AC <input type="text" id="spell_dc" maxlength="3"><br>
+        Spell Attack Bonus<input type="text" id="spell_attack_bonus" maxlength="3"><br><br>
+        Spell Slots<br>
+        1st<input type="text" id="spellslots_1st"><br>
+        2nd<input type="text" id="spellslots_2nd"><br>
+        3rd<input type="text" id="spellslots_3rd"><br>
+        4th<input type="text" id="spellslots_4th"><br>
+        5th<input type="text" id="spellslots_5th"><br>
+        6th<input type="text" id="spellslots_6th"><br>
+        7th<input type="text" id="spellslots_7th"><br>
+        8th<input type="text" id="spellslots_8th"><br>
+        9th<input type="text" id="spellslots_9th"><br>
+      </div></tr></td>
+      <table id="gold_pieces_table" style="border-style:solid; min-width: 200px;">
+        <tr>
+          <td><input type="text" id="gold_pieces">Gold Pieces</td>
+        </tr>
+      </table>
+      <tr><td><table id="inventory_list" style="border-style:solid">
+        <tr><th>Equipment</th></tr>
+        <tr><td><input type="text" value="Example item"></td></tr>
+        <tr><td><input type="text" value="Example item"></td></tr>
+        <tr><td><input type="text" value="Example item"></td></tr>
+        <tr><td><input type="text" value="Example item"></td></tr>
+        <tr><td><input type="text" value="Example item"></td></tr>
+        <tr><td><input type="text" value="Example item"></td></tr>
+        <tr><td><input type="text" value="Example item"></td></tr>
+        <tr><td><input type="text" value="Example item"></td></tr>
+        <tr><td><input type="text" value="Example item"></td></tr>
+        <tr><td><input type="text" value="Example item"></td></tr>
+        <tr><td><input type="text" value="Example item"></td></tr>
+        <tr><td><input type="text" value="Example item"></td></tr>
+        <tr><td><input type="text" value="Example item"></td></tr>
+        <tr><td><input type="text" value="Example item"></td></tr>
+        <tr><td><input type="text" value="Example item"></td></tr>
+        <tr><td><input type="text" value="Example item"></td></tr>
+        <tr><td><input type="text" value="Example item"></td></tr>
+        <tr><td><input type="text" value="Example item"></td></tr>
+        <tr><td><input type="text" value="Example item"></td></tr>
+        <tr><td><input type="text" value="Example item"></td></tr>
+        <tr><td><input type="text" value="Example item"></td></tr>
+      </table></tr></td>
+    </table>
+  </div>
+  <div style="float: left; width: 30%">
+
+    <table id="features_and_traits_list" style="border-style:solid">
+      <tr><th>Features and Traits</th></tr>
+      <tr><td><input type="text" value="Example feature"></td></tr>
+      <tr><td><input type="text" value="Example feature"></td></tr>
+      <tr><td><input type="text" value="Example feature"></td></tr>
+      <tr><td><input type="text" value="Example feature"></td></tr>
+      <tr><td><input type="text" value="Example feature"></td></tr>
+      <tr><td><input type="text" value="Example feature"></td></tr>
+      <tr><td><input type="text" value="Example feature"></td></tr>
+      <tr><td><input type="text" value="Example feature"></td></tr>
+      <tr><td><input type="text" value="Example feature"></td></tr>
+      <tr><td><input type="text" value="Example feature"></td></tr>
+      <tr><td><input type="text" value="Example feature"></td></tr>
+      <tr><td><input type="text" value="Example feature"></td></tr>
+      <tr><td><input type="text" value="Example feature"></td></tr>
+      <tr><td><input type="text" value="Example feature"></td></tr>
+      <tr><td><input type="text" value="Example feature"></td></tr>
+      <tr><td><input type="text" value="Example feature"></td></tr>
+      <tr><td><input type="text" value="Example feature"></td></tr>
+      <tr><td><input type="text" value="Example feature"></td></tr>
+      <tr><td><input type="text" value="Example feature"></td></tr>
+      <tr><td><input type="text" value="Example feature"></td></tr>
+      <tr><td><input type="text" value="Example feature"></td></tr>
+      <tr><td><input type="text" value="Example feature"></td></tr>
+      <tr><td><input type="text" value="Example feature"></td></tr>
+      <tr><td><input type="text" value="Example feature"></td></tr>
+      <tr><td><input type="text" value="Example feature"></td></tr>
+      <tr><td><input type="text" value="Example feature"></td></tr>
+      <tr><td><input type="text" value="Example feature"></td></tr>
+    </table>
+    <table id="known_spells_list" style="border-style:solid">
+      <tr><th>Known Spells</th></tr>
+      <tr><td><input type="text" value="Example spell"></td></tr>
+      <tr><td><input type="text" value="Example spell"></td></tr>
+      <tr><td><input type="text" value="Example spell"></td></tr>
+      <tr><td><input type="text" value="Example spell"></td></tr>
+      <tr><td><input type="text" value="Example spell"></td></tr>
+      <tr><td><input type="text" value="Example spell"></td></tr>
+      <tr><td><input type="text" value="Example spell"></td></tr>
+      <tr><td><input type="text" value="Example spell"></td></tr>
+      <tr><td><input type="text" value="Example spell"></td></tr>
+      <tr><td><input type="text" value="Example spell"></td></tr>
+      <tr><td><input type="text" value="Example spell"></td></tr>
+      <tr><td><input type="text" value="Example spell"></td></tr>
+      <tr><td><input type="text" value="Example spell"></td></tr>
+      <tr><td><input type="text" value="Example spell"></td></tr>
+      <tr><td><input type="text" value="Example spell"></td></tr>
+      <tr><td><input type="text" value="Example spell"></td></tr>
+      <tr><td><input type="text" value="Example spell"></td></tr>
+      <tr><td><input type="text" value="Example spell"></td></tr>
+      <tr><td><input type="text" value="Example spell"></td></tr>
+      <tr><td><input type="text" value="Example spell"></td></tr>
+      <tr><td><input type="text" value="Example spell"></td></tr>
+      <tr><td><input type="text" value="Example spell"></td></tr>
+      <tr><td><input type="text" value="Example spell"></td></tr>
+    </table>
+  </div>
+</div>
+

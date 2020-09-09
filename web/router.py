@@ -101,9 +101,19 @@ def update_character():
     "character": character.get_json()
   }, 201
 
-@app.route('/character/view/<user_id>/<character_id>/', methods=['GET'])
-def roster(user_id, character_id):
-  return "Character roster/{}/{}".format(user_id, character_id)
+@app.route('/character/view/<int:user_id>/<int:character_id>/', methods=['GET'])
+def view_character(user_id, character_id):
+  character = orc.load_character(user_id, character_id)
+
+  if character is None:
+    return redirect(url_for('not_found'), code=302)
+
+  output = character.get_json() if character is not None else "None"
+  return render_template('view_character.html', characters=[character.get_json()])
+
+@app.route('/not_found', methods=['GET'])
+def not_found():
+  return "Not found"
 
 @app.route('/character_roster', methods=['GET'])
 def roster():

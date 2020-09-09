@@ -102,7 +102,7 @@ class Orchestrator:
     character = self.create_character(request)
     try:
       character.load_json(request.json['character'])
-      existing_character = load_character()
+      existing_character = load_character(character.user_id, character.character_id)
       if existing_character is not None and character.immutable_fields_changed(existing_character):
         return False
     except Exception as e:
@@ -121,7 +121,7 @@ class Orchestrator:
     if character_id not in [0, 1, 2]:
       print("Invalid character_id {}".format(character_id))
       return None
-    if self.load_character(character_id) is not None:
+    if self.load_character(user.uid, character_id) is not None:
       print("Character already exists")
       return None
     character = self.create_character(user.uid, character_id)
@@ -176,7 +176,7 @@ class Orchestrator:
       return None
     
     character = Character(json.dumps(json_obj['character']))
-    existing_character = self.load_character(character.character_id)
+    existing_character = self.load_character(character.user_id, character.character_id)
     if existing_character is None:
       print("Character does not currently exist")
       return None
@@ -194,13 +194,13 @@ class Orchestrator:
 
   def store_character(self, character):
     data = character.get_json()
-    if self.load_character(character.character_id) is None:
+    if self.load_character(character.user_id, character.character_id) is None:
       self.app.db.insert_character(character.user_id, character.character_id, data)
     else:
       self.app.db.update_character(character.user_id, character.character_id, data)
 
-  def load_character(self, character_id):
-    results = self.app.db.select_character_by_id(character_id)
+  def load_character(self, user_id, character_id):
+    results = self.app.db.select_character(user_id, character_id)
     if len(results) > 0 and len(results[0]) > 2:
       character = Character()
       character.load_json(results[0][2])

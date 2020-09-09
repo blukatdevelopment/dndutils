@@ -52,7 +52,7 @@ class Db:
     values = [str(character_data), str(user_id), str(character_id)]
     self.update(sql, values)
 
-  def select_character_by_id(self, character_id):
-    sql = "SELECT * FROM characters WHERE character_id = (%s)"
-    values = [str(character_id),]
+  def select_character(self, user_id, character_id):
+    sql = "SELECT * FROM characters WHERE user_id = (%s) AND character_id = (%s)"
+    values = [str(user_id), str(character_id),]
     return self.select(sql, values)

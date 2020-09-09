@@ -1,8 +1,8 @@
-import hashlib, secrets
+import hashlib, secrets, random, string
 
 def encode_raw(raw, salt=None):
   if salt is None:
-    salt = "salty"#secrets.token_bytes(32)
+    salt = get_random_string(32)
     print("Creating salt: {}".format(salt))
   else:
     salt = salt
@@ -15,3 +15,8 @@ def encode_raw(raw, salt=None):
     "hashed": str(hashed),
     "salt": str(salt)
   }
+
+def get_random_string(length):
+    letters = string.ascii_lowercase
+    ret = ''.join(random.choice(letters) for i in range(length))
+    return ret
