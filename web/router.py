@@ -101,6 +101,10 @@ def update_character():
     "character": character.get_json()
   }, 201
 
+@app.route('/character/view/<user_id>/<character_id>/', methods=['GET'])
+def roster(user_id, character_id):
+  return "Character roster/{}/{}".format(user_id, character_id)
+
 @app.route('/character_roster', methods=['GET'])
 def roster():
   return "Character roster"
