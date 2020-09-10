@@ -1,13 +1,21 @@
-from flask_mysqldb import MySQL
+import mysql.connector
+
+#from flask_mysqldb import MySQL
 
 class Db:
   def __init__(self, app):
     self.app = app
-    self.mysql = MySQL(app)
+    #self.mysql = MySQL(app)
+    self.mysql = mysql.connector.connect(
+      host=app.config['MYSQL_HOST'],
+      user=app.config['MYSQL_USER'],
+      password=app.config['MYSQL_PASSWORD'],
+      database=app.config['MYSQL_DB']
+    )
 
   def select(self, sql, values):
     print("{}:{}".format(sql, values))
-    cur = self.mysql.connection.cursor()
+    cur = self.mysql.cursor()
     cur.execute(sql, values)
     data = cur.fetchall()
     cur.close()
@@ -15,16 +23,16 @@ class Db:
 
   def insert(self, sql, values):
     print("{}:{}".format(sql, values))
-    cur = self.mysql.connection.cursor()
+    cur = self.mysql.cursor()
     cur.execute(sql, values)
-    self.mysql.connection.commit()
+    self.mysql.commit()
     cur.close() 
 
   def update(self, sql, values):
     print("{}:{}".format(sql, values))
-    cur = self.mysql.connection.cursor()
+    cur = self.mysql.cursor()
     cur.execute(sql, values)
-    self.mysql.connection.commit()
+    self.mysql.commit()
     cur.close() 
 
   def insert_user(self, email, user_id, password, salt):
