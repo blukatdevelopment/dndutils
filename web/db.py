@@ -38,7 +38,7 @@ class Db:
     self.insert(sql, values)
 
   def select_user_by_id(self, user_id):
-    sql = "SELECT * FROM users WHERE username = %s"
+    sql = "SELECT * FROM users WHERE pid = %s"
     values = [user_id]
     return self.select(sql, values)
 
