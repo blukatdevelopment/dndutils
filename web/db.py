@@ -1,11 +1,8 @@
 import mysql.connector
 
-#from flask_mysqldb import MySQL
-
 class Db:
   def __init__(self, app):
     self.app = app
-    #self.mysql = MySQL(app)
     self.mysql = mysql.connector.connect(
       host=app.config['MYSQL_HOST'],
       user=app.config['MYSQL_USER'],

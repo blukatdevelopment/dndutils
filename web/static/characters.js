@@ -13,7 +13,6 @@ function getCharacterData(){
         var element = $(this);
         var raw = element.text();
         var data = JSON.parse(raw);
-        //console.log("Raw character: " + JSON.stringify(data));
         characters.push(data);
     }); 
     return characters;
@@ -48,31 +47,23 @@ function generateCharacterView(character){
 
 function setCharacterById(character_id, character){
     let oldCharacter = getCharacterById(character_id);
-    //console.log(`OLD ${JSON.stringify(oldCharacter)} vs NEW ${JSON.stringify(character)}`);
     if(oldCharacter){
-        console.log(`Updating existing character ${character_id}`);
         getImmutableFields().forEach(function(field){
             let oldVal = oldCharacter[field];
             let newVal = character[field];
-            console.log(`Reverting field ${field} from ${newVal} to ${oldVal}`);
             character[field] = oldCharacter[field];
         });
         myCharacters.characters[character_id] = character;
     }
     else{
-        console.log(`Storing new character ${character_id}`);
         myCharacters.characters.push(character);
     }
-    //console.log("Character has been changed to" + JSON.stringify(getCharacterById(character_id)));
-
 }
 
 function getCharacterById(character_id){
     let ret = null;
     myCharacters.characters.forEach(function(character){
-        //console.log(`Comparing character ${character.character_id} to character ${character_id}`);
         if(character.character_id == character_id){
-            console.log(`Found character ${character_id} `);// + JSON.stringify(character));
             ret = character;
         }
     });
@@ -106,8 +97,6 @@ function resetViewButtons(){
 
 function viewCharacter(id){
     let character = getCharacterById(id);
-    
-    //console.log(`View character ${JSON.stringify(character)}`);
 
     if(!character){
         return;
@@ -154,7 +143,6 @@ function viewCharacter(id){
 function saveCharacter(id){
 
     let character = getCharacterById(id);
-    //console.log(`Saving character ${id}: ` + JSON.stringify(character));
     $(`#save_${id}`).replaceWith(makeViewButton(id));
 
     getStringFields().forEach(function(field){
@@ -200,8 +188,7 @@ function updateRequestedCharacter(raw){
 }
 
 function updateCharacter(id){
-    let data = JSON.stringify({character: getCharacterById(id)}); 
-    console.log(`Saving character ${id} data ${data}`)
+    let data = JSON.stringify({character: getCharacterById(id)});
     $.ajax({
         type: 'POST',
         url: "/update_character",
@@ -350,6 +337,7 @@ function getStringFields(){
     "stealth",
     "survival",
     // Top section
+    "biography",
     "proficiency_bonus",
     "character_name",
     "class_and_level",

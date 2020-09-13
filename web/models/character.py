@@ -9,7 +9,10 @@ class Character:
   def load_json(self, json_text):
     data = json.loads(json_text)
     for field in get_all_fields():
-      setattr(self, field, data[field])
+      if field in data:
+        setattr(self, field, data[field])
+      else:
+        setattr(self, field, "")
 
   def get_json(self):
     data = {}
@@ -136,6 +139,7 @@ def get_string_fields():
     "stealth_prof",
     "survival_prof",
     # Top section
+    "biography",
     "proficiency_bonus",
     "character_name",
     "class_and_level",

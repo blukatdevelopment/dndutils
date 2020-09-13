@@ -13,91 +13,30 @@ function getCharacterData(){
         var element = $(this);
         var raw = element.text();
         var data = JSON.parse(raw);
-        //console.log("Raw character: " + JSON.stringify(data));
         characters.push(data);
     }); 
     return characters;
 }
 
-function generateCharacterView(character){
-    let id = character.character_id
-    let name = character.character_name == "" ? "Unnamed character": character.character_name
-    let abilities = JSON.stringify(character.ability_scores_array);
-    let li = $(`<li><p>Character ${id}: ${name} Abilities:${abilities}<p></li>`);
-    li.append(makeViewButton(id));
-    return li;
-}
-
-function setCharacterById(character_id, character){
-    let oldCharacter = getCharacterById(character_id);
-    //console.log(`OLD ${JSON.stringify(oldCharacter)} vs NEW ${JSON.stringify(character)}`);
-    if(oldCharacter){
-        console.log(`Updating existing character ${character_id}`);
-        getImmutableFields().forEach(function(field){
-            let oldVal = oldCharacter[field];
-            let newVal = character[field];
-            console.log(`Reverting field ${field} from ${newVal} to ${oldVal}`);
-            character[field] = oldCharacter[field];
-        });
-        myCharacters.characters[character_id] = character;
-    }
-    else{
-        console.log(`Storing new character ${character_id}`);
-        myCharacters.characters.push(character);
-    }
-    //console.log("Character has been changed to" + JSON.stringify(getCharacterById(character_id)));
-
-}
-
 function getCharacterById(character_id){
     let ret = null;
     myCharacters.characters.forEach(function(character){
-        //console.log(`Comparing character ${character.character_id} to character ${character_id}`);
         if(character.character_id == character_id){
-            console.log(`Found character ${character_id} `);// + JSON.stringify(character));
+            console.log(`Found character ${character_id} `);
             ret = character;
         }
     });
     return ret;
 }
 
-function makeSaveButton(id){
-    let saveButton = $(`<button id="save_${id}"">Save</button>`);
-    saveButton.click(function(){
-       saveCharacter(id);
-    });
-    return saveButton;
-}
-
-function makeViewButton(id){
-    let viewButton = $(`<button id="view_${id}"">View</button>`);
-    viewButton.click(function(){
-       viewCharacter(id); 
-    });
-    return viewButton;
-}
-
-function resetViewButtons(){
-    for(let i = 0; i < 3; i++){
-        let editButton = $(`#save_${i}`);
-        if(editButton){
-            editButton.replaceWith(makeViewButton(i));
-        }
-    }
-}
-
 function viewCharacter(id){
     let character = getCharacterById(id);
-    
-    //console.log(`View character ${JSON.stringify(character)}`);
 
     if(!character){
         return;
     }
 
     resetViewButtons();
-
-    $(`#view_${id}`).replaceWith(makeSaveButton(id));
 
     getStringFields().forEach(function(field){
         let val = character[field];
@@ -130,105 +69,6 @@ function viewCharacter(id){
     getCheckboxFields().forEach(function(field){
         let val = character[field];
         $(`#${field}`).prop('checked', val);
-    });
-}
-
-function saveCharacter(id){
-
-    let character = getCharacterById(id);
-    //console.log(`Saving character ${id}: ` + JSON.stringify(character));
-    $(`#save_${id}`).replaceWith(makeViewButton(id));
-
-    getStringFields().forEach(function(field){
-        let val = $(`#${field}`).val();
-        if(val){
-            character[field] = val;
-        }
-    });
-
-    get_list_fields().forEach(function(field){
-        $(`#${field}_list :input`).each(function(){
-            if(!character[field]){
-                character[field] = [];
-            }
-            character[field].push($(this).val());
-        });
-    });
-
-    getCheckboxFields().forEach(function(field){
-        character[field] = $(`#${field}`).is(":checked");
-    });
-
-    setCharacterById(id, character);
-
-    updateCharacter(id);
-}
-
-function newCharacterButton(i){
-    var button = $("<button>Create Character</button>");
-    button.click(function(){
-        requestCharacter(i);
-    });
-    return button;
-}
-
-function updateRequestedCharacter(raw){
-    let character = JSON.parse(raw);
-    setCharacterById(character.character_id, character);
-    viewCharacter(character.character_id);
-    
-    let id = character.character_id;
-    $(`#character${id}`).replaceWith(generateCharacterView(character));   
-}
-
-function updateCharacter(id){
-    let data = JSON.stringify({character: getCharacterById(id)}); 
-    console.log(`Saving character ${id} data ${data}`)
-    $.ajax({
-        type: 'POST',
-        url: "/update_character",
-        data: data,
-        contentType: "application/json; charset=utf-8",
-        dataType: 'json',
-        success: function(resp) {
-            updateRequestedCharacter(resp.character)
-        },
-        error: function(error){
-          if(error.responseJSON){
-            var responseJSON = error.responseJSON;
-            console.log(error);
-            var msg = responseJSON.msg;
-            $("#response_div").text(msg);
-          }
-          else{
-            $("#response_div").text("Unexpected error. Please try again later."); 
-          }
-        }
-    });
-}
-
-function requestCharacter(i){
-
-    $.ajax({
-        type: 'POST',
-        url: "/request_character",
-        data: JSON.stringify({character_id: i}),
-        contentType: "application/json; charset=utf-8",
-        dataType: 'json',
-        success: function(resp) {
-            updateRequestedCharacter(resp.character)
-        },
-        error: function(error){
-          if(error.responseJSON){
-            var responseJSON = error.responseJSON;
-            console.log(error);
-            var msg = responseJSON.msg;
-            $("#response_div").text(msg);
-          }
-          else{
-            $("#response_div").text("Unexpected error. Please try again later."); 
-          }
-        }
     });
 }
 
@@ -332,6 +172,7 @@ function getStringFields(){
     "stealth",
     "survival",
     // Top section
+    "biography",
     "proficiency_bonus",
     "character_name",
     "class_and_level",

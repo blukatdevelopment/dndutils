@@ -1,11 +1,8 @@
 #!/usr/bin/python3
 
-
-
 from flask import Flask, request, make_response, url_for, redirect
 from flask import render_template, jsonify
 from db import Db
-import json
 import os
 from orchestrator import Orchestrator
 
@@ -126,9 +123,3 @@ def vault():
 @app.route('/downtime', methods=['GET'])
 def downtime():
   return "Downtime"
-
-
-if __name__ == '__main__':
-  # Bind to PORT if defined, otherwise default to 5000.
-  port = int(os.environ.get('PORT', 5000))
-  app.run(host='0.0.0.0', port=port)

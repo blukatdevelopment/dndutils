@@ -20,11 +20,14 @@ def select_x(x, options):
   for i in range(x):
     selection_made = False
     while not selection_made:
-      roll = roll_result(len(options)-1)
+      roll = roll_result(len(options))-1
       selected_option = options[roll]
       if selected_option not in selected:
+        print("Picked {}".format(selected_option))
         selected.append(selected_option)
         selection_made = True
+      else:
+        print("Already picked {}".format(selected_option))
   return selected
 
 def main():
