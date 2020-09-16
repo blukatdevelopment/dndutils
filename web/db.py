@@ -42,6 +42,11 @@ class Db:
     values = [user_id]
     return self.select(sql, values)
 
+  def select_user_by_username(self, username):
+    sql = "SELECT * FROM users WHERE username = %s"
+    values = [username]
+    return self.select(sql, values)
+
   def select_characters_by_user_uid(self, uid):
     sql = "SELECT * FROM characters WHERE user_id = %s"
     values = [uid,]

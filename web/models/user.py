@@ -17,6 +17,14 @@ class User:
 
 def get_user_by_id(db, user_id):
   data = db.select_user_by_id(user_id)
+  return format_user_from_data(data)
+
+def get_user_by_username(db, username):
+  data = db.select_user_by_username(username)
+  return format_user_from_data(data)
+
+def format_user_from_data(data):
+  print("Data{}".format(data))
   if len(data) == 0:
     return None
 
@@ -27,9 +35,10 @@ def get_user_by_id(db, user_id):
     "password": data[0][3],
     "salt": data[0][4]
   })
+
   return user
 
-def attempt_encode_auth_token(app, user_id, password):
+def attempt_encode_auth_token(app, username, password):
   if user_id is None or password is None:
     return {
       "success": False,
@@ -40,7 +49,7 @@ def attempt_encode_auth_token(app, user_id, password):
     payload = {
       'exp': datetime.datetime.utcnow() + datetime.timedelta(days=1, seconds=5),
       'iat': datetime.datetime.utcnow(),
-      'pi': user_id,
+      'pi': username,
       'pw': password
     }
     
@@ -70,7 +79,7 @@ def attempt_decode_auth_token(app, auth_token):
     payload = jwt.decode(auth_token, app.config.get('SECRET_KEY'))
     return {
       "success": True,
-      "user_id": payload['pi'],
+      "username": payload['pi'],
       "password": payload['pw']
     }
   except jwt.ExpiredSignatureError:

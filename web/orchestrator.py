@@ -1,7 +1,7 @@
 import sys
 sys.path.append('./models')
 sys.path.append('../roll72')
-from user import User, attempt_encode_auth_token, attempt_decode_auth_token, get_user_by_id
+from user import User, attempt_encode_auth_token, attempt_decode_auth_token, get_user_by_id, get_user_by_username
 from character import Character
 from crypto import encode_raw
 from roll72 import roll_ability_scores
@@ -16,13 +16,13 @@ class Orchestrator:
     token = request.cookies.get('magical_login_token')
     result = attempt_decode_auth_token(self.app, token)
 
-    if result["success"] and self.validate_user(result['user_id'], result['password']):
+    if result["success"] and self.validate_user(result['username'], result['password']):
       return result["success"]
 
   def get_user(self, request):
     token = request.cookies.get('magical_login_token')
     result = attempt_decode_auth_token(self.app, token)
-    return self.get_user_by_id(result['user_id'])
+    return self.get_user_by_username(result['username'])
 
   def login_user(self, request):
     if request.json is None:
@@ -31,15 +31,15 @@ class Orchestrator:
         "error": "null"
       }
     data = request.json
-    user_id = data['username']
+    username = data['username']
     password = data['password']
 
-    if not self.validate_user(user_id, password):
+    if not self.validate_user(username, password):
       return {
         "success": False,
         "error": "invalid"
       }
-    result = attempt_encode_auth_token(self.app, user_id, password)
+    result = attempt_encode_auth_token(self.app, username, password)
 
     if not result["success"]:
       print("Error:{}".format(result))
@@ -48,7 +48,7 @@ class Orchestrator:
         "error": result["error"]
       }
 
-    result['user'] = self.get_user_by_id(user_id)
+    result['user'] = self.get_user_by_username(username)
     return result
 
   def register_user(self, request):
@@ -79,8 +79,11 @@ class Orchestrator:
         "error": e
       }
 
-  def validate_user(self, user_id, password):
-    user = self.get_user_by_id(user_id)
+  def validate_user(self, username, password):
+    user = self.get_user_by_username(username)
+    print("Character {}".format(user))
+    if user is list:
+      user = user[0]
     if user is None:
       return False
     result = encode_raw(password, user.salt)
@@ -96,6 +99,9 @@ class Orchestrator:
 
   def get_user_by_id(self, user_id):
     return get_user_by_id(self.app.db, user_id)
+
+  def get_user_by_username(self, username):
+    return get_user_by_username(self.app.db, username)
 
   def validate_character(self, request):
     character = self.create_character(request)
