@@ -36,8 +36,6 @@ function viewCharacter(id){
         return;
     }
 
-    resetViewButtons();
-
     getStringFields().forEach(function(field){
         let val = character[field];
         $(`#${field}`).val(character[field]);

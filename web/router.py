@@ -71,7 +71,7 @@ def my_characters():
     return redirect(url_for('login'), code=302)
   user = orc.get_user(request)
   characters = orc.get_characters_json_by_user_id(user.uid)
-  return render_template("my_characters.html", characters=characters)
+  return render_template("my_characters.html", characters=characters, user_id=user.uid)
 
 @app.route('/request_character', methods=['POST'])
 def request_character():

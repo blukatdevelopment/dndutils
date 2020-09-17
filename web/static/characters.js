@@ -37,11 +37,13 @@ function populateCharacters(){
 }
 
 function generateCharacterView(character){
-    let id = character.character_id
-    let name = character.character_name == "" ? "Unnamed character": character.character_name
+    let user_id = $('#user_id').text().trim();
+    let id = character.character_id;
+    let name = character.character_name == "" ? "Unnamed character": character.character_name;
     let abilities = JSON.stringify(character.ability_scores_array);
-    let li = $(`<li><p>Character ${id}: ${name} Abilities:${abilities}<p></li>`);
+    let li = $(`<li><p>Character ${id}: ${name} Abilities:${abilities}</p></li>`);
     li.append(makeViewButton(id));
+    li.append($(`<a href="/character/view/${user_id}/${id}/">Character ${user_id} page.</a>`));
     return li;
 }
 

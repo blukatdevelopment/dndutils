@@ -7,7 +7,7 @@
 {% for character_data in characters %}
   <p class="character_data" hidden>{{ character_data }} <hidden>
 {% endfor %}
-
+<p hidden id="user_id"> {{ user_id }} </hidden>
 
 <div id="root"></div>
 <table id="header_table" style="border-style:solid">
@@ -30,12 +30,12 @@
       </table>
     </td>
   </tr>
-  <tr>
-    <td>Bio<br>
-      <textarea id="biography"></textarea>
-    </td>
-  </tr>
 </table>
+
+<div style="border-style:solid">
+  <td>Bio<br>
+      <textarea id="biography"></textarea>
+</div>
 
 <div class="float-container">
 
