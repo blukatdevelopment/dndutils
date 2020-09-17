@@ -43,7 +43,7 @@ function generateCharacterView(character){
     let abilities = JSON.stringify(character.ability_scores_array);
     let li = $(`<li><p>Character ${id}: ${name} Abilities:${abilities}</p></li>`);
     li.append(makeViewButton(id));
-    li.append($(`<a href="/character/view/${user_id}/${id}/">Character ${user_id} page.</a>`));
+    li.append($(`<a href="/character/view/${user_id}/${id}/"><button>View On separate Page.</button></a>`));
     return li;
 }
 
@@ -81,7 +81,7 @@ function makeSaveButton(id){
 }
 
 function makeViewButton(id){
-    let viewButton = $(`<button id="view_${id}"">View</button>`);
+    let viewButton = $(`<button id="view_${id}"">View Here</button>`);
     viewButton.click(function(){
        viewCharacter(id); 
     });
@@ -117,12 +117,10 @@ function viewCharacter(id){
         let table = $(`#${field}_list`);
         $(`#${field}_list tr`).remove();
 
-        let header = getListFieldHeader(field);
-        table.append($(`<tr><th>${header}</th></tr>`));
+        
+        get_list_header(table, character, field);
 
-
-        let vals = ['one','two','three','four','five','six','seven'];
-
+        let vals = character[field] || [];
 
         vals.forEach(function(val){
             let input = $('<input type="text">');
@@ -134,12 +132,61 @@ function viewCharacter(id){
             tr.append(td);
             table.append(tr);
         });
+
+
     });
 
     getCheckboxFields().forEach(function(field){
         let val = character[field];
         $(`#${field}`).prop('checked', val);
     });
+}
+
+function get_list_header(table, character, field, vals){
+    
+    let tableRow = $(`<tr>/tr>`);
+    let headerTable = $(`<table></table>`);
+
+    let headerText = getListFieldHeader(field);
+    let headerLabel = $(`<th>${headerText}</th><`);
+    
+    tableRow.append(headerLabel)
+
+    let headerPlusData = $(`<td></td>`);
+    let headerPlusButton = $('<button class="plus">+</button>');
+    headerPlusButton.click(function(){
+        addListItem(field);
+    });
+    headerPlusData.append(headerPlusButton);
+    tableRow.append(headerPlusData);
+
+    let headerMinusData = $(`<td></td>`);
+    let headerMinusButton = $('<button class="minus">-</button>');
+    headerMinusButton.click(function(){
+        removeListItem(field);
+    });
+    headerPlusData.append(headerMinusButton);
+    tableRow.append(headerMinusData);
+
+    headerTable.append(tableRow);
+
+    table.prepend(headerTable);
+}
+
+function removeListItem(fieldName){
+    console.log("Removing from " + fieldName);
+    let table = $(`#${fieldName}_list`); 
+    let rows = $(`tr`, table);
+    if(rows.length > 1){
+        rows.last().remove();
+    }
+}
+
+function addListItem(fieldName){
+    console.log("Adding to " + fieldName);
+    let table = $(`#${fieldName}_list`);
+    let row = $('<tr><td><input type="text"></input></td></tr>');
+    table.append(row);
 }
 
 function saveCharacter(id){
@@ -155,11 +202,12 @@ function saveCharacter(id){
     });
 
     get_list_fields().forEach(function(field){
+        character[field] = [];
         $(`#${field}_list :input`).each(function(){
-            if(!character[field]){
-                character[field] = [];
+            let val = $(this).val();
+            if(val && val != ''){
+                character[field].push(val);    
             }
-            character[field].push($(this).val());
         });
     });
 
