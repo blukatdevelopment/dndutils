@@ -65,7 +65,8 @@ def get_list_fields():
     "inventory",
     "currency",
     "features_and_traits",
-    "ability_scores_array"
+    "ability_scores_array",
+    "proficiencies"
   ]
 
 def get_string_fields():
