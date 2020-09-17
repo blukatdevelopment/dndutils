@@ -154,7 +154,20 @@ def get_string_fields():
     "initiative",
     "speed",
     "hit_point_maximum",
+    "hit_dice",
+    # Attacks
+    "attack_1",
+    "attack_bonus_1",
+    "attack_damage_1",
+    "attack_2",
+    "attack_bonus_2",
+    "attack_damage_2",
+    "attack_3",
+    "attack_bonus_3",
+    "attack_damage_3",
     # Spell slots
+    "spell_dc",
+    "spell_attack_bonus",
     "spellslots_1st",
     "spellslots_2nd",
     "spellslots_3rd",
@@ -163,7 +176,9 @@ def get_string_fields():
     "spellslots_6th",
     "spellslots_7th",
     "spellslots_8th",
-    "spellslots_9th"
+    "spellslots_9th",
+    # Currency
+    "gold_pieces"
     ]
 
 def main():

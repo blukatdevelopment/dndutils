@@ -174,7 +174,6 @@ function get_list_header(table, character, field, vals){
 }
 
 function removeListItem(fieldName){
-    console.log("Removing from " + fieldName);
     let table = $(`#${fieldName}_list`); 
     let rows = $(`tr`, table);
     if(rows.length > 1){
@@ -183,7 +182,6 @@ function removeListItem(fieldName){
 }
 
 function addListItem(fieldName){
-    console.log("Adding to " + fieldName);
     let table = $(`#${fieldName}_list`);
     let row = $('<tr><td><input type="text"></input></td></tr>');
     table.append(row);
@@ -346,28 +344,30 @@ function getStringFields(){
     return [
     "user_id",
     "character_id",
-    // Ability scores
     "strength",
     "dexterity",
     "constitution",
     "intelligence",
     "wisdom",
     "charisma",
-    // Ability score mods
     "strength_mod",
     "dexterity_mod",
     "constitution_mod",
     "intelligence_mod",
     "wisdom_mod",
     "charisma_mod",
-    // Saving throws
     "strength_save",
     "dexterity_save",
     "constitution_save",
     "intelligence_save",
     "wisdom_save",
     "charisma_save",
-    // Skills
+    "strength_save_prof",
+    "dexterity_save_prof",
+    "constitution_save_prof",
+    "intelligence_save_prof",
+    "wisdom_save_prof",
+    "charisma_save_prof",
     "acrobatics",
     "animal_handling",
     "arcana",
@@ -386,7 +386,24 @@ function getStringFields(){
     "sleight_of_hand",
     "stealth",
     "survival",
-    // Top section
+    "acrobatics_prof",
+    "animal_handling_prof",
+    "arcana_prof",
+    "athletics_prof",
+    "deception_prof",
+    "history_prof",
+    "insight_prof",
+    "intimidation_prof",
+    "investigation_prof",
+    "medicine_prof",
+    "nature_prof",
+    "perception_prof",
+    "performance_prof",
+    "persuasion_prof",
+    "religion_prof",
+    "sleight_of_hand_prof",
+    "stealth_prof",
+    "survival_prof",
     "biography",
     "proficiency_bonus",
     "character_name",
@@ -396,25 +413,22 @@ function getStringFields(){
     "race",
     "alignment",
     "experience_points",
-    // Middle section
     "armor_class",
     "initiative",
     "speed",
     "hit_point_maximum",
     "hit_dice",
     "attack_1",
-    "attack_2",
-    "attack_3",
     "attack_bonus_1",
-    "attack_bonus_2",
-    "attack_bonus_3",
     "attack_damage_1",
+    "attack_2",
+    "attack_bonus_2",
     "attack_damage_2",
+    "attack_3",
+    "attack_bonus_3",
     "attack_damage_3",
     "spell_dc",
     "spell_attack_bonus",
-    "gold_pieces",
-    // Spell slots
     "spellslots_1st",
     "spellslots_2nd",
     "spellslots_3rd",
@@ -423,7 +437,8 @@ function getStringFields(){
     "spellslots_6th",
     "spellslots_7th",
     "spellslots_8th",
-    "spellslots_9th"];
+    "spellslots_9th",
+    "gold_pieces"];
 }
 
 function getImmutableFields(){
