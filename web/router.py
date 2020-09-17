@@ -118,8 +118,8 @@ def roster():
 
 @app.route('/vault', methods=['GET'])
 def vault():
-  return "Vault"
+  return "Vault Not Implemented yet"
 
 @app.route('/downtime', methods=['GET'])
 def downtime():
-  return "Downtime"
+  return "Downtime Not Implemented yet"

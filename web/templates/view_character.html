@@ -2,8 +2,13 @@
 <!DOCTYPE html>
 <script src="{{url_for('static', filename='jquery-3.5.1.min.js')}}"></script>
 <script src="{{url_for('static', filename='view_character.js')}}"></script>
-
-<h2>My Characters</h2>
+<head>
+  <style>
+          body { background-color: #fdfadd; }
+          input { background-color: #fdfadd; }
+          textarea { background-color: #fdfadd; }
+  </style>
+</head>
 {% for character_data in characters %}
   <p class="character_data" hidden>{{ character_data }} <hidden>
 {% endfor %}

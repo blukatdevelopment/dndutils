@@ -49,7 +49,7 @@ function viewCharacter(id){
         table.append($(`<tr><th>${header}</th></tr>`));
 
 
-        let vals = ['one','two','three','four','five','six','seven'];
+        let vals = character[field] || [];
 
 
         vals.forEach(function(val){
