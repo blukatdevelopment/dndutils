@@ -34,7 +34,7 @@ class Db:
 
   def insert_user(self, email, user_id, password, salt):
     sql = "INSERT INTO users(username, pass_hash, salt, email) VALUES (%s, %s, %s, %s)"
-    values = [ email, user_id, password, salt ]
+    values = [ user_id, password, salt, email]
     self.insert(sql, values)
 
   def select_user_by_id(self, user_id):

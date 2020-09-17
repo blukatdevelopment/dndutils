@@ -39,7 +39,8 @@ def format_user_from_data(data):
   return user
 
 def attempt_encode_auth_token(app, username, password):
-  if user_id is None or password is None:
+  if username is None or password is None:
+    print("Username({}) or password({}) is null".format(username, password))
     return {
       "success": False,
       "error": "null"

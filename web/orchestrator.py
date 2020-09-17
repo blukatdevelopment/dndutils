@@ -81,7 +81,6 @@ class Orchestrator:
 
   def validate_user(self, username, password):
     user = self.get_user_by_username(username)
-    print("Character {}".format(user))
     if user is list:
       user = user[0]
     if user is None:
