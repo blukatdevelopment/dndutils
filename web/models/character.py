@@ -2,6 +2,7 @@ import json
 
 class Character:
   def __init__(self, json_text=None):
+    self.loaded = False
     init_blank_fields(self)
     if json_text is not None:
         self.load_json(json_text)
@@ -9,10 +10,14 @@ class Character:
   def load_json(self, json_text):
     data = json.loads(json_text)
     for field in get_all_fields():
-      if field in data:
+      # immutable fields should be loaded exactly once.
+      if self.loaded and field in get_immutable_fields():
+        print("Not updating immutable field {}".format(field))
+      elif field in data:
         setattr(self, field, data[field])
       else:
         setattr(self, field, "")
+    self.loaded = True
 
   def get_json(self):
     data = {}

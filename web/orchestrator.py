@@ -146,11 +146,13 @@ class Orchestrator:
       for character_row in data:
         character_dict = {
           "user_id": character_row[0],
-          "name": character_row[1],
+          "character_id": character_row[1],
           "raw": character_row[2]
         }
         character = Character()
         character.load_json(character_dict['raw'])
+        character.user_id = user_id
+        character.character_id = character_dict['character_id']
         characters.append(character)
     return characters
 
@@ -189,11 +191,10 @@ class Orchestrator:
       print("Character invalid")
       return None
 
-    if existing_character.immutable_fields_changed(character):
-      print("Immutable fields changed")
-      return None
+    # Copy immutable fields to existing character data
+    existing_character.load_json(character.get_json())
 
-    self.store_character(character)
+    self.store_character(existing_character)
     return character
 
   def store_character(self, character):
@@ -208,5 +209,7 @@ class Orchestrator:
     if len(results) > 0 and len(results[0]) > 2:
       character = Character()
       character.load_json(results[0][2])
+      character.user_id = user_id
+      character.character_id = character_id
       return character
     return None
