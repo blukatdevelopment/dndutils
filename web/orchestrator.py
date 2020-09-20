@@ -122,7 +122,7 @@ class Orchestrator:
     if character_id is None:
       print("character_id is null")
       return None
-    if character_id not in [0, 1, 2]:
+    if character_id not in self.get_valid_character_ids():
       print("Invalid character_id {}".format(character_id))
       return None
     if self.load_character(user.uid, character_id) is not None:
@@ -132,11 +132,15 @@ class Orchestrator:
     self.store_character(character)
     return character
 
+  def get_valid_character_ids(self):
+    return [0, 1, 2]
+
   def get_characters_json_by_user_id(self, user_id):
     characters = self.get_characters_by_user_id(user_id)
     data = []
     for character in characters:
-      data.append(character.get_json())
+      if character.character_id in self.get_valid_character_ids():
+        data.append(character.get_json())
     return data
 
   def get_characters_by_user_id(self, user_id):
