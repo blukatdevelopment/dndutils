@@ -5,7 +5,31 @@ var myCharacters = {};
 $(document).ready(function(){
     myCharacters.characters = getCharacterData();
     populateCharacters();
+    setUpJsonButtons();
 });
+
+function setUpJsonButtons(){
+    $("#get_json_button").click(function(){
+        let character = getCharacterById(getActiveCharacterId());
+        $("#json_area").text(JSON.stringify(character));
+    });
+
+    $("#load_json_button").click(function(){
+        try{
+            let characterJson = $("#json_area").val();
+            let data = JSON.parse(characterJson);
+            setCharacterById(getActiveCharacterId(), data);
+            viewCharacter(getActiveCharacterId());
+        }
+        catch(err){
+            alert("Could not parse JSON" + err);
+        }
+    });
+}
+
+function getActiveCharacterId(){
+    return myCharacters.activeCharacter;
+}
 
 function getCharacterData(){
     var characters = [];
@@ -53,12 +77,24 @@ function setCharacterById(character_id, character){
         getImmutableFields().forEach(function(field){
             let oldVal = oldCharacter[field];
             let newVal = character[field];
-            character[field] = oldCharacter[field];
+            character[field] = oldVal;
+            newVal = character[field];
         });
-        myCharacters.characters[character_id] = character;
+        removeCharacterById(character_id);
     }
-    else{
-        myCharacters.characters.push(character);
+    myCharacters.characters.push(character);
+}
+
+function removeCharacterById(id){
+    let index = -1;
+    for(let i = 0; i < myCharacters.characters.length; i++){
+        let character = myCharacters.characters[i];
+        if(character.character_id == id){
+            index = i;
+        }
+    }
+    if(index != -1){
+        myCharacters.characters.splice(index, 1);
     }
 }
 
@@ -99,8 +135,8 @@ function resetViewButtons(){
 
 function viewCharacter(id){
     let character = getCharacterById(id);
-
     if(!character){
+        console.log("Could not find character " + id);
         return;
     }
 
@@ -140,6 +176,8 @@ function viewCharacter(id){
         let val = character[field];
         $(`#${field}`).prop('checked', val);
     });
+
+    myCharacters.activeCharacter = id;
 }
 
 function get_list_header(table, character, field, vals){

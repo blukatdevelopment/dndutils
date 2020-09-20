@@ -46,12 +46,12 @@
   </tr>
 </table>
 
-<div style="border-style:solid">
+<div style="border-style:solid; display:block;">
   <td>Bio<br>
       <textarea id="biography"></textarea>
 </div>
 
-<div class="float-container">
+<div id="float_container" style="display:block; border-style:solid; overflow: auto">
 
   <div style="float: left; width: 6%">
     <table id="abilities_table" style="border-style:solid; min-height: 635px;">
@@ -418,5 +418,13 @@
       <tr><td><input type="text" value="Example spell"></td></tr>
     </table>
   </div>
+</div>
+
+
+<div id="json_div" style="border-style:solid; display:block;">
+  <button id="get_json_button">Get JSON</button>
+  <button id="load_json_button">Load JSON</button>
+  <br>
+  <textarea id="json_area"></textarea>
 </div>
 
