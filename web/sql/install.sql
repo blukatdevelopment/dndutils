@@ -1,3 +1,6 @@
+CREATE USER IF NOT EXISTS 'dndutils'@'localhost' IDENTIFIED BY 'utils';
+GRANT ALL PRIVILEGES ON dndutils.* TO 'dndutils'@'localhost';
+
 CREATE DATABASE IF NOT EXISTS dndutils;
 
 USE dndutils;
@@ -24,5 +27,12 @@ CREATE TABLE IF NOT EXISTS characters(
   PRIMARY KEY(user_id, character_id)
 );
 
-CREATE USER 'dndutils'@'localhost' IDENTIFIED BY 'utils';
-GRANT ALL PRIVILEGES ON dndutils.* TO 'dndutils'@'localhost';
+CREATE TABLE IF NOT EXISTS downtime_activities(
+  character_id INT NOT NULL,
+  user_id INT NOT NULL,
+  activity_id INT NOT NULL,
+  week INT NOT NULL,
+  year INT NOT NULL,
+  outcome_string TEXT,
+  PRIMARY KEY(user_id, character_id, week)
+);

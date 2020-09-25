@@ -1,16 +1,22 @@
 import sys
 sys.path.append('./models')
 sys.path.append('../roll72')
+sys.path.append('../downtime')
 from user import User, attempt_encode_auth_token, attempt_decode_auth_token, get_user_by_id, get_user_by_username
 from character import Character
 from crypto import encode_raw
 from roll72 import roll_ability_scores
+from downtime import get_downtime_activities
 import json
 
 class Orchestrator:
   def __init__(self, app):
     self.app = app
     self.stored_token = None
+
+#------------------------------------------------------------------------------#
+#     users                                                                    #
+#------------------------------------------------------------------------------#
 
   def is_logged_in(self, request):
     token = request.cookies.get('magical_login_token')
@@ -102,6 +108,24 @@ class Orchestrator:
   def get_user_by_username(self, username):
     return get_user_by_username(self.app.db, username)
 
+#------------------------------------------------------------------------------#
+#     permissions                                                              #
+#------------------------------------------------------------------------------#
+
+  def has_permission(self, user_id, permission):
+    perms = self.get_user_permissions(user_id)
+    return permission in perms
+
+  def get_user_permissions(self, user_id):
+    results = self.app.db.select_user_permissions(user_id)
+    perms = []
+    for row in results:
+      perms.append(row[1])
+    return perms
+
+#------------------------------------------------------------------------------#
+#     characters                                                               #
+#------------------------------------------------------------------------------#
   def validate_character(self, request):
     character = self.create_character(request)
     try:
@@ -217,3 +241,18 @@ class Orchestrator:
       character.character_id = character_id
       return character
     return None
+
+#------------------------------------------------------------------------------#
+#     downtime                                                                 #
+#------------------------------------------------------------------------------#
+
+  def get_downtime_selection_data(request):
+    ret = {}
+    user = self.get_user(request)
+
+    characters = self.get_characters_by_user_id(user.uid)
+    activities = get_downtime_activities()
+
+    
+
+    return 

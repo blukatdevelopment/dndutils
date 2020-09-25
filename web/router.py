@@ -24,6 +24,10 @@ def index():
   user = orc.get_user(request)
   return render_template("index.html", username=user.username)
 
+#------------------------------------------------------------------------------#
+#     users                                                                    #
+#------------------------------------------------------------------------------#
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
   if request.method == 'POST':
@@ -64,6 +68,10 @@ def register():
   else:
     print("Error registering: {}".format(reg_result))
     return "Error", 400
+
+#------------------------------------------------------------------------------#
+#     characters                                                               #
+#------------------------------------------------------------------------------#
 
 @app.route('/my_characters', methods=['GET'])
 def my_characters():
@@ -116,10 +124,34 @@ def not_found():
 def roster():
   return "Character roster"
 
-@app.route('/vault', methods=['GET'])
-def vault():
-  return "Vault Not Implemented yet"
+#------------------------------------------------------------------------------#
+#     Downtime                                                                 #
+#------------------------------------------------------------------------------#
 
 @app.route('/downtime', methods=['GET'])
 def downtime():
-  return "Downtime Not Implemented yet"
+  if(not orc.is_logged_in(request)):
+    return redirect(url_for('login'), code=302)
+  return render_template('downtime.html')
+
+@app.route('/downtime/current', methods=['GET'])
+def downtime():
+  if(not orc.is_logged_in(request)):
+    return "Forbidden", 401
+  return orc.get_downtime_selection_data()
+
+#------------------------------------------------------------------------------#
+#     permissions                                                              #
+#------------------------------------------------------------------------------#
+
+@app.route('/user_perms/<int:user_id>/', methods=['GET'])
+def user_perms(user_id):
+  perms = orc.get_user_permissions(user_id)
+  return str(perms)
+
+#------------------------------------------------------------------------------#
+#     vault                                                                    #
+#------------------------------------------------------------------------------#
+@app.route('/vault/', methods=['GET'])
+def vault():
+  return "Vault Not Implemented yet"

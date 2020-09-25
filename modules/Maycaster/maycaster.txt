@@ -1,0 +1,318 @@
+# All Roads Lead To Maycaster
+
+## Preface
+It's been two years since the appearance of a powerful necromancer in the lands
+of Morrius. The kingdoms failed to take action until the first few cities
+fell to the growing army of the undead. The combined armies of the world
+succeeded only in slowing the undead march across the continent. With the fall
+of Ivyport, the walled city of Maycaster welcomes its last wave of refugees.
+
+There is no where left to run, nowhere left to hide from Shemov's army of
+darkness.
+
+# The Howling Owl
+The party gathers in a bustling tavern just inside the walls of Maycaster. A bard strums at his lyre, struggling
+to be heard over the rowdy crowd raising a ruckus by the bar. The bar is a 
+melting pot of displaced soldiers and criminals. Brin, the veteran, tells them
+he's gathered the party to look for the location of a portal to another realm
+where the necromancer doesn't exist.
+
+## NPCs:
+
+### Quest giver
+
+Brin Mooncutter(Veteran)
+A soldier who escaped from the battle of Ivyport, Brin has been collecting a
+body of research to find ancient weapons to fight the undead. He learned of a
+portal, but has to return to the front lines to attempt to retake Ivyport
+tomorrow and wants the adventurers to go to the castle to figure out where the
+location of the portal can be found.
+
+If the players ask, he will give written permission to the party so that they
+can easily access the private library in the castle.
+
+
+### Owners
+
+Karma Girnidre - Mother of Geraldine and wife of Healdi, she is responsible for
+selling popular heart-shaped pastries in the tavern.
+
+Healdi Girnidre - Husband of Karma and fater of Geraldine, he is responsible for
+guarding the tavern and pouring drinks.
+
+
+### Misc
+
+Bard(Morth Roughrock) - He pretends he was famous in his hometown of Vison before it fell to the necromancer.
+He is not very talented and won't admit he was a hack in his hometown.
+
+Commoner(Tap Wiaoy) - A regular from before Ivyport refugees showed up. He loudly communicates how he doesn't
+like seeing all these miscreants in the tavern.
+
+### Soldiers
+
+Fascar Ascadron - Town guard who is off duty with his men for the day. He's talking about the attack on
+Ivyport that will be happening tomorrow.
+
+Voben Kug - He resents all these foreigners, 
+and particularly criminals in his town.
+
+Grar Havenmourn - He just wants to keep to himself and drink.
+
+### The Ivory Bats
+
+Leader(Bold Charles)(Bandit Captain) - After turning his bandit crew to mercenaries, 
+he lost all but two men defending Ivyport in the battle last week. He's been staying
+returning to this tavern every day since then and trying to pay for his drinks
+by gambling.
+
+Second(Dingbat Barden)(Bandit) - Barden survived in the last battle because he 
+stayed back to tie his boots and was late to the frontline.
+
+Third(Cheating Norvin)(Bandit) - Norvin survived the last battle by running with
+the captain.  
+
+### The Lucky Kite
+Bivo Skygazer(Commoner) - He runs a very successful goods shop, but is very
+suspicious of all the shifty patrons at the tavern. Pronounces "sch" as "sh".
+
+
+## Encounters
+
+### Introduction
+The party piles into the howling owl, finding that Brin is waiting for them at
+a table. He waves them over.
+
+"Take a seat, people. You all know that things are grim.
+The necromancer just pushed us out of Ivyport and took a lot of good men.
+There's nowhere left for us to retreat if these walls are breached, and that's
+why tomorrow I'm leading an attack to take back Ivyport."
+
+### Interjection
+
+Bold Charles calls in.
+
+"What makes think you stand a chance against the dark army? Saw with
+muh own eyes as Ivyport's men were cut in two by the undead horde. Don't think
+we've got as many left as were lost in that fight."
+
+Brin looks to the adventurers. 
+
+"The bandit's right. We're only buying time with this
+attack. That's where you come in. I've heard rumors of a portal nearby that 
+leads somewhere out of the necromancer's reach. If you can get through the
+portal, you might be able to send for help, or find somewhere for us to flee."
+
+### Bandit shenanigans
+
+Bold charles chimes in again.
+
+"You really thing this scrawny lot's going to save you? I give ten gold that
+y'cant arm wrastle the likes of me." DC 1d12+2
+
+Bold charles rolls his eyes and pays up if they win.
+
+"Well.. tell you what, I saw Cheating Norvin deal from the bottom of the deck."
+He stands the other bandit up against the wall and places an apple on his head.
+
+"Knock this off his head, and I'll tell you what I know."
+DC 1d12+2
+
+If adventurers win, they find out that there's a lady on trial in the castle
+that knows the location of a cult that probably has something to do with any
+portals in the area.
+
+### Exit encounter
+
+Brin tells the party that he has to go ready his men for the morning.
+He hands them a hand-written note permitting their entrance into 
+Castle Maycaster. 
+
+"I bet there's some information about this portal in the library in Maycaster.
+Go look there and you might find some clues."
+
+As soon as Brin and the soldiers leave, the Bandits get ready to set out.
+
+"Bacon's out of the pan, lads. Let's go pay that shop keeper a visit."
+"Aye, aye."
+They go off to rob the Lucky Kite.
+
+# Maycaster Castle
+The party ventures to Maycastor in search of information about the location of
+a mysterious portal.
+
+## Locations
+
+### The door guard
+Shim Shaon (Guard) will approach the party as soon as they enter, asking them
+what their business is and insisting they're crazy if they explain that they 
+need to learn about a magic portal. He can be convinced, but will try and fight
+the party if they refuse to leave or appease him. He can likewise give directions
+if they get on his good side.
+
+### Laboratory
+Orlidor (Evil Mage) and Thukore (Apprentice Wizard) are working on potions for
+tomorrow's battle with the undead. When the adventurers meet him, he insists
+they leave, as he's very busy. If they insist, he'll hear them out. He knows the
+location of a cult working on a ritual, but he'll need payment to find out where.
+The payment consists of a single hair from the king.
+
+### Knights
+Ysac the Patriot(Knight), Hamlyn the Powerful(Knight), 
+and Ualiar Fenwraek(Archer) sit around a round table discussing tomorrow's
+battle. They'll ask for the adventurer's advice. 
+If pressed for info, they'll mention that there were reports of missing people
+outside the city's walls at the same time as sightings of hooded men.
+
+### Court room
+Justice Houqi Gahna(Noble) is hosting a murder trial. Chiao Muan(Commoner) claims
+that Lazy Delores(Commoner) killed her parents outside the walls, but Delores 
+blames a group of hooded, cloaked figures that she claims were collecting sacrifices
+for a ritual. The adventurers can convince the Justice that they'll investigate the
+scene of the crime to bring back evidence. They can likewise talk to Delores after
+the trial concludes.
+
+###  Armory
+Melre Boneflare(Scout) tells the adventurers to leave if she sees them. 
+Reoden Liltrikt(Guard), and Vamochu Dahkethab(Guard) carry a suit of platemail
+into the other room. On the desk she sits at is a +1 shortsword that she's
+filling out paperwork for.
+
+Behind her there are some racks with magical items on them. She can be convinced
+to sell a +1 dagger. She'll ask for 50GP, but talk down to 30GP.
+
+### Clinic
+Reoden Liltrikt(Frontline Medic) will heal the adventurers if they are injured
+without asking any questions, but he says "Shhh, it's our little secret. I'm
+only supposed to treat our soldiers."
+
+### Vault
+Gom Grurig (Guard) is stationed in front of a metal door. Behind it are riches
+including gold bars, jewels, and pride silk.
+
+### Public library
+The librarian, Nahrezal Neshon(Commoner) will get angry if anyone talks in 
+the library. If they talk her down, she will tell them about the forbidden 
+library. If they keep convincing her, she'll tell them about where to find
+the book on magic portals, giving them advantage on their investigation check.
+
+### Forbidden library
+The library is locked up. If the adventurers break in, they each can make a DC8
+stealth check and a DC16 investigation check to find a book related to the 
+portal. If they fail the stealth check, Gom Grurig (Guard) will move from the
+vault to the library door and say "Hello? Who's in there?!" And start noisily
+getting his keyes to unlock the door. This grants them an escape. He'll leave
+and return with  Hom Virdutsk (Guard) from near the dinner party, who will then
+patrol the library.
+
+### Dinner party
+As the party enters, the guests sit around an expansive table reminiscing.
+
+Gneg the bugbear speaks up. "Remember when we were enemies? I remember planning to crush these walls."
+Urgaz Brokenclaw the Gnoll joins in. "Nobody thought that weakling necromancer would rise up like this."
+Grans Snow(Tabaxi Minstrel) "Yes, well, he most-certainly did. Took the theaters of Zuding straight away."
+Zahnur Cemmed(Spy) laughs "It ironic. I hid here from the Zuding after killing their king. They're gone, but I still can't leave."
+Uantouk (Lizardfolk) "I can smell food. Someone is cooking nearby."
+Dovak Lahrit (Commoner): "Ah, our lizard friend has a sharp nose. *he drops a steaming stock pot onto the table*
+    Our new specialty: boiled potato peels with old lard. Bon apetite."
+
+### Noble meeting
+- Morinari Messalina(Noble) of Darkmare
+- Go-Mizunoo Tourhan(Noble) of Onora
+- Oshin Pandaramn(Noble) of Hipledo
+- Ainbcellach Anastasia(Noble) of Zuding
+- Atsuhito Myat(Noble) of Arioburgh
+- Temti-Agun Nemanjić(Noble) of Badena
+The noblemen discuss politics of the countries they came from as if they
+still existed.
+
+### Temple
+Tsua Tue(Priest) gives a sermon about Bahamut.
+"Lord of the Wind, give me strength,
+For I am not strong enough to stand up against the evil around me.
+On my own, I will stumble in time, and be crushed under the tides of darkness that flood around me.
+May your scales shield us.
+May your fangs protect us.
+Lord Bahamut, hear our prayer."
+
+They pass around plates for offerings, and if asked about cultists, they'll explain
+that there are no cultists among them, only former cultists. If pressed further,
+Orth Dewcloud(Acolyte) will confess that he was with a group worshipping Azuth,
+but they began to learn dark magic involving sacrifices, and so he left.
+
+### Throne room
+King Tiberius Eudokia(noble) insists that the tables can still be turned. A coalition
+has formed an army to pull off a last-ditch effort to hunt down and kill Shemov
+before his undead army begins the seige on Maycaster. If asked about a portal, he'll
+accuse the party of being cowards. He challenges them to stay and defend Maycaster
+while the attack commences tomorrow. 
+
+His royal advisor Lo Yuang(Spy) won't admit it, but he's working for Shemov and 
+is planning to lure the armies out of Maycaster in order to then launch a direct
+assault under the promise that he'll get to live. If the party figures this out
+and convinces the king, he will call off the assault and instead order a guard
+to accompany the party in their search for the portal.
+
+
+# The Cave of the cultists
+
+## The Cabin
+On their way to the location of the cult performing a ritual, they will find
+a cabin with its door off the frame. Moving inside, they'll see muddy footprints
+leading west into a hall to the main room, where a zombie stands over a dead man
+and woman. In the other room, they find a set of chests containing three strange
+outfits(robes with hoods and masks). Behind the cabin, they'll find the entrance
+to the cave.
+
+## The Cave
+The cave is a natural stone formation that has carved floors and occasional
+light sources. Aside from these blue orbs, camp fire, and portal, 
+everything in the dungeon is pitch black and requires a torch or dark vision.
+
+### Goblin chamber
+To the West is a dead-end. The path to the East turns Northward into a T-juncture
+heading continuing North or heading West. A sign pointing Northward reads
+"Deadly traps ahead."(it's truthful). To The West passage is a wooden door with
+three zombies gathered around a small light. They don't see the party.
+
+The party can take either of these dangerous paths that lead into a chamber with
+goblins in it. If they linger to consider their options, they hear footsteps 
+and voices coming from the entrance that move West.
+
+If the party follows stealthfully (DC10 stealth check), they will hear the goblins
+knock three times before a secret passage is opened from the other side, leading
+them into the goblin chamber. The three in the cavern will trade places with
+the three that have just entered, leaving the party with the option to avoid
+the traps and zombies and instead knock to gain entrance through the secret
+passage.
+
+Inside the goblin chamber are three tents, a small camp fire, and some goblins.
+
+### The gargoyle
+To the west there is a path leading Northward to a tomb with glowing red runes
+on it. The runes read: "And so Nornush spoke the name of his
+scaled god to the stone beast, and it fell
+still where it was." The first time the party says "Bahamut" in this chamber, a
+red glow will cover them and they will each gain 1d8 hit points and one spell slot.
+
+North of the goblin chamber there is a statue of a gargoyle standing on a large
+podium with an inscription that reads "Beware! You are in mortal danger."
+If a member of the party gets close enough to read it, the gargoyle leaps to
+action and gets a surprise attack on that adventurer. Otherwise reaching the
+halfway point in the room will cause the gargoyle to awaken.
+
+The gargoyle can be defeated in combat normally. If the party utters "Bahamut",
+it will return to its pedestal and go stone. Neutralizing the gargoyle will
+raise a port cullis leading to a chamber of cultists. The other path has a door
+leading to cultists running a ritual.
+
+
+### Cultists
+
+Both chambers of cultists are connected. If attacked, the Northern group will
+fight to protect the ritual going on in the ritual chamber. If the ritual
+chamber is attacked, the Febam Zumol (Cult Fanatic) will call out for backup
+from the other chamber, creating a very deadly encounter.
+
+If the party enters the portal, they survive this encounter and end up in the
+portal in Tandris.
