@@ -40,8 +40,21 @@ def natural_critical(roll):
     return 'The target is frightened until the end of your next turn.'
   elif roll == 2:
     return 'The target must use all their movement to move away from you in a straight line.'
+  elif roll < 5:
+    return "If the enemy's holding a weapon, you destroy it."
+  elif roll < 7:
+    return "Your ferocity damages the enemy's armor, reducing their AC by 1."
+  elif roll < 9:
+    return "You can use your bonus action to perform a grapple on the target if they are not already grappled."
   elif roll < 11:
     return 'If the target is holding a weapon, you can steal it from them.'
+  elif roll < 13:
+    return "The target's movement is reduced to 0 until the start of your next turn."
+  elif roll < 15:
+    temp_hp = roll_result(3, 6)
+    return "Adrenaline pumps through your veins, granting you {} temporary HP".format(str(temp_hp))
+  elif roll < 17:
+    return "You move quickly, allowing you to repeat this attack using a bonus action."
   elif roll < 20:
     return 'The target goes prone. If the target is already prone, they instead take 1d6 bludgeoning damage.'
   else:
@@ -52,10 +65,20 @@ def ranged_critical(roll):
   if roll == 1:
     return 'The target has disadvantage on all attack rolls until the end of your next turn.'
   elif roll == 2:
-    damage = roll_dice(3, 6)["result"]
+    damage = roll_result(3, 6)
     return 'The target must succeed a DC 14 con save or fall into shock and take {} psychic damage'.format(str(damage))
+  elif roll < 5:
+    return 'The target loses their reaction, if they currently have one.'
   elif roll < 11:
     return 'The target drops their weapon.'
+  elif roll < 13:
+    return "Unless prevented by the reload property, you can make an additional ranged attack on this target."
+  elif roll < 15:
+    removal_damage = roll_result(2, 6)
+    return "You strike the target's leg. Their movement reduces by 10ft until they use their action to remove the projectile and take {} piercing damage.".format(str(removal_damage))
+  elif roll < 18:
+    internal_damage = roll_result(2, 8)
+    return "The target suffers internal injuries, receiving {} piercing damage.".format(str(internal_damage))
   elif roll < 20:
     return 'The target blinded for the next 10 minutes.'
   else:
@@ -66,9 +89,17 @@ def magic_critical(roll):
     return 'If the target has resistance to this damage type, it loses it for 10 minutes. If not, it instead becomes vulnerable to this damage type for 10 minutes.'
   elif roll == 2:
     return 'One creature you choose within 5 feet of the target is also damaged by this spell.'
+  elif roll < 5:
+    return 'The spell was accidentally quickened. If the casting time was already a bonus action or reaction, it did not use the bonus action or reaction.'
+  elif roll < 7:
+    return 'Your spell is super effective! You may reroll all damage dice and take the higher of the two values.'
   elif roll < 11:
-    hours = roll_dice(1, 4)
+    hours = roll_result(1, 4)
     return 'The enemy turns into a {} for {} hours, or until they take damage'.format(random_object(), str(hours))
+  elif roll < 14:
+    return 'You strike a rich layline and regain up to one expended spell slot of desired level.'
+  elif roll < 18:
+    return 'You weaken the enemy to this damage type. Immunity downgrades to resistance, resistance is lost, and if they lack resistance, they gain vulnerability.'
   elif roll < 20:
     return wild_magic()
   else:
@@ -97,8 +128,14 @@ def melee_critical(roll):
   elif roll == 2:
     damage = roll_dice(3, 6)["result"]
     return 'Target suffers internal trauma and takes {} bludgeoning damage.'.format(damage)
+  elif roll < 5:
+    return "The target cannot use reactions for the rest of your turn."
   elif roll < 11:
     return 'You can use your reaction to make a single melee attack against this creature.'
+  elif roll < 15:
+    return "You build momentum and gain an additional 10ft of movement this turn."
+  elif roll < 18:
+    return "Limb damage: the target's movement speed is decreased by 5 feet until they complete a short rest."
   elif roll < 20:
     return 'If the target is holding a weapon, you knock it onto the ground.'
   else:
