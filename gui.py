@@ -3,6 +3,8 @@ import sys
 sys.path.append('./critical_fumble')
 sys.path.append('./critical_success')
 sys.path.append('./artillery')
+sys.path.append('./encounters')
+from encounter import get_encounter
 from artillery import artillery_inaccuracy
 from critical_fumble import fumble
 from critical_success import critical
@@ -17,10 +19,10 @@ class DmGUI:
     self.init_controls()
 
   def init_controls(self):
-    
     CritFumbleGUI(self.master)
     ArtilleryGUI(self.master)
     MassRoller(self.master)
+    EncounterGUI(self.master)
 
 class CritFumbleGUI:
   def __init__(self, master):
@@ -157,6 +159,21 @@ class MassRoller:
     text = roll_mass(int(args["quantity"]), int(args["mod"]), int(args["ac"]), False, False)["description"]
     self.output['text'] = text
     send_message_to_discord(text)
+
+class EncounterGUI:
+  def __init__(self, master):
+    self.master = master
+    self.init_controls(master)
+
+  def init_controls(self, master):
+    self.label = Label(master, text='               ')
+    self.label.grid(row = 1 , column = 4)
+    self.encounter = Button(master, text="Encounter", command = self.calculate_encounter)
+    self.encounter.grid(row=5, column = 0)
+
+  def calculate_encounter(self):
+    text = get_encounter()
+    self.label['text'] = text
 
 def main():
   root = Tk()
