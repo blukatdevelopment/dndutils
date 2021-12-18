@@ -127,6 +127,7 @@ when you run this macro.
 #                    |___/ |_|\___\___|                                        #
 #                                                                              #
 ##############################################################################*/
+if(!actor) return;
 
 function generate_roll_html(roll, purpose = false){
     let msg = "";
@@ -222,6 +223,8 @@ TOOL_PROFS = "tool_profs",
 LANGUAGES = "languages",
 SKILL_PROFS = "skill_profs";
 
+const NAME = "name";
+
 const SKILL_ABILITIES_MAP = {
     [ACROBATICS]: STRENGTH,
     [SLEIGHT_OF_HAND]: DEXTERITY,
@@ -271,6 +274,8 @@ function parse_stats_from_biography(){
     let stats = build_stats_object(tables);
     unpack_list_fields(stats);
 
+    stats[NAME] = actor.data.name;
+    
     return stats;
 }
 
@@ -395,7 +400,7 @@ function build_skill_button(skill){
     return {
         label: skill,
         callback: async (html) => {
-            roll_and_display(formula, skill + " check");
+            roll_and_display(formula, STATS[NAME] + " made a(n) " + skill + " check");
         }
     };
 }
