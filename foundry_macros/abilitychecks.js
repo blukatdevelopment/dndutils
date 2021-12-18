@@ -272,41 +272,36 @@ function get_save_proficiency(ability){
 
 function skill_dialog(){
     new Dialog({
-        title: "Skill Check",
+        title: "Ability Check",
         content: "content",
-        buttons: build_skill_buttons()
+        buttons: build_ability_buttons()
     }).render(true);
 }
 
-function build_skill_buttons(){
+function build_ability_buttons(){
     let buttons = {};
-    for(skill in SKILL_ABILITIES_MAP){
-        buttons[skill] = build_skill_button(skill);
+    for(i in ABILITIES){
+        let ability = ABILITIES[i];
+        if(typeof ability === "string"){
+            buttons[ability] = build_ability_button(ability);
+        }
     }
     return buttons;
 }
 
-function build_skill_button(skill){
-    let ability = SKILL_ABILITIES_MAP[skill];
+function build_ability_button(ability){
     let ability_mod = parseInt(STATS[ability+"_mod"]);
     if(isNaN(ability_mod)){
         ability_mod = 0;
     }
-    let proficiency_bonus = STATS[PROF_BONUS];
-    proficiency_bonus = parseInt(proficiency_bonus.match(/([+-]?[0-9]+)/)[0]);
-    let proficiency = get_proficiency(skill);
-
-    if(isNaN(proficiency_bonus) || !proficiency){
-        proficiency_bonus = 0;
-    }
-    let modifier = ability_mod + proficiency_bonus;
+    let modifier = ability_mod;
     modifier = modifier < 0 ? modifier : `+${modifier}`;
     let formula = `1d20${modifier}`;
 
     return {
-        label: skill,
+        label: ability,
         callback: async (html) => {
-            roll_and_display(formula, STATS[NAME] + " made a(n) " + skill + " check");
+            roll_and_display(formula, STATS[NAME] + " made a(n) " + ability + " check");
         }
     };
 }
