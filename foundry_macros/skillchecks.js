@@ -9,7 +9,7 @@
 ##############################################################################*/
 if(!actor) return;
 
-function generate_roll_html(roll, second_roll, purpose = false){
+function generate_roll_html(roll, second_roll, mods, purpose = false){
     let msg = "";
     msg += `<table border="1">`;
     msg += "<tbody>";
@@ -35,6 +35,7 @@ function generate_roll_html(roll, second_roll, purpose = false){
     total_result_text = result_text_list.join(",");
 
     msg += `<tr><td display="inline-block">Dice: ${total_result_text}</td></tr>`;
+    msg += `<tr><td>Mods:<br> ${mods}</td></tr>`;
     msg += `<tr><td>Totals: ${roll._total}, ${second_roll._total}</td></tr>`;
     msg += "</tbody>";
     return msg;
@@ -44,10 +45,10 @@ async function roll(formula){
     return new Roll(formula).roll(async=false);
 }
 
-async function roll_and_display(formula, purpose){
+async function roll_and_display(formula, purpose, mods){
     let roll_result = await roll(formula);
     let second_roll_result = await roll(formula);
-    let html = generate_roll_html(roll_result, second_roll_result, purpose);
+    let html = generate_roll_html(roll_result, second_roll_result, mods, purpose);
     ChatMessage.create({content: html});
 }
 
@@ -180,8 +181,9 @@ function parse_stats_from_biography(){
 }
 
 function unpack_list_fields(stats){
-    stats[SKILL_PROFS] = stats[SKILL_PROFS].replace(" ", "").split(",");
-    stats[SAVE_PROFS] = stats[SAVE_PROFS].replace(" ", "").split(",");
+    stats[SKILL_PROFS] = stats[SKILL_PROFS].replaceAll(" ", "").split(",");
+    console.log(stats[SKILL_PROFS]);
+    stats[SAVE_PROFS] = stats[SAVE_PROFS].replaceAll(" ", "").split(",");
 }
 
 /* Returns a 2D string array of table contents*/
@@ -244,6 +246,7 @@ function merge_table_fields(fields_table, values_table){
 function get_proficiency(skill){
     for(i in STATS[SKILL_PROFS]){
         let skill_prof = STATS[SKILL_PROFS][i];
+        //console.log(STATS[SKILL_PROFS]);
         if(typeof skill_prof != "string"){
             skill_prof = "";
         }
@@ -297,8 +300,13 @@ function build_skill_buttons(){
 function build_skill_button(skill){
     let ability = SKILL_ABILITIES_MAP[skill];
     let ability_mod = parseInt(STATS[ability+"_mod"]);
+    let mods = "";
     if(isNaN(ability_mod)){
         ability_mod = 0;
+        mods += "No ability mod<br>"
+    }
+    else{
+        mods += `${ability} ${ability_mod}<br>`;
     }
     let proficiency_bonus = STATS[PROF_BONUS];
     proficiency_bonus = parseInt(proficiency_bonus.match(/([+-]?[0-9]+)/)[0]);
@@ -306,6 +314,10 @@ function build_skill_button(skill){
 
     if(isNaN(proficiency_bonus) || !proficiency){
         proficiency_bonus = 0;
+        mods += "No skill proficiency mod"
+    }
+    else{
+        mods += `${skill} ${proficiency_bonus}`;
     }
     let modifier = ability_mod + proficiency_bonus;
     modifier = modifier < 0 ? modifier : `+${modifier}`;
@@ -314,7 +326,7 @@ function build_skill_button(skill){
     return {
         label: skill,
         callback: async (html) => {
-            await roll_and_display(formula, STATS[NAME] + " made a(n) " + skill + " check");
+            await roll_and_display(formula, STATS[NAME] + " made a(n) " + skill + " check", mods);
         }
     };
 }
