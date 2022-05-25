@@ -9,7 +9,7 @@
 ##############################################################################*/
 if(!actor) return;
 
-function generate_roll_html(roll, purpose = false){
+function generate_roll_html(roll, second_roll, purpose = false){
     let msg = "";
     msg += `<table border="1">`;
     msg += "<tbody>";
@@ -25,21 +25,29 @@ function generate_roll_html(roll, purpose = false){
             result_text_list.push(result_text);    
         }
     }
+    for(i in second_roll.terms[0].results){
+        let result = second_roll.terms[0].results[i];
+        let result_text = result.discarded ? `<s>${result.result}</s>` : `${result.result}`;
+        if(typeof result.result !== 'undefined'){
+            result_text_list.push(result_text);    
+        }
+    }
     total_result_text = result_text_list.join(",");
 
     msg += `<tr><td display="inline-block">Dice: ${total_result_text}</td></tr>`;
-    msg += `<tr><td>Total: ${roll._total}</td></tr>`;
+    msg += `<tr><td>Totals: ${roll._total}, ${second_roll._total}</td></tr>`;
     msg += "</tbody>";
     return msg;
 }
 
-function roll(formula){
+async function roll(formula){
     return new Roll(formula).roll(async=false);
 }
 
-function roll_and_display(formula, purpose){
-    let roll_result = roll(formula);
-    let html = generate_roll_html(roll_result, purpose);
+async function roll_and_display(formula, purpose){
+    let roll_result = await roll(formula);
+    let second_roll_result = await roll(formula);
+    let html = generate_roll_html(roll_result, second_roll_result, purpose);
     ChatMessage.create({content: html});
 }
 
@@ -306,7 +314,7 @@ function build_skill_button(skill){
     return {
         label: skill,
         callback: async (html) => {
-            roll_and_display(formula, STATS[NAME] + " made a(n) " + skill + " check");
+            await roll_and_display(formula, STATS[NAME] + " made a(n) " + skill + " check");
         }
     };
 }
