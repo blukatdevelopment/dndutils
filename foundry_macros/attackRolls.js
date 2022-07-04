@@ -191,6 +191,7 @@ const PROFICIENCIES_TABLE_FIELDS = [
 const STATS_TABLE = 0,
 PROFICIENCIES_TABLE = 1,
 ATTACK_TABLE = 2;
+FEATS_TABLE = 3;
 
 function parse_stats_from_biography(){
     if(!actor) return;
