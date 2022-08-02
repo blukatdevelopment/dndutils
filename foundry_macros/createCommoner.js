@@ -41,6 +41,10 @@ const SKILLS = [
     PERSUASION
 ];
 
+const HIT_POINTS = "hit points",
+MAX_HIT_POINTS = "max hit points",
+TEMP_HIT_POINTS = "temp hit points";
+
 const STRENGTH = "strength",
 DEXTERITY = "dexterity",
 CONSTITUTION = "constitution",
@@ -76,7 +80,7 @@ SIZE = "size",
 LINEAGE = "lineage",
 SPEED = "speed",
 BACKGROUND = "background",
-HIT_DICE = "hit dice",
+STAMINA_DICE = "stamina dice",
 PROF_BONUS = "prof bonus",
 FEATS = "feats",
 DESCRIPTION = "description",
@@ -153,7 +157,7 @@ const STATS_TABLE_FIELDS = [
     [UNUSED, STRENGTH, STRENGTH_MOD, AC, CLASS],
     [UNUSED, DEXTERITY, DEXTERITY_MOD, SIZE, LINEAGE],
     [UNUSED, CONSTITUTION, CONSTITUTION_MOD, SPEED, BACKGROUND],
-    [UNUSED, INTELLIGENCE, INTELLIGENCE_MOD, UNUSED, HIT_DICE],
+    [UNUSED, INTELLIGENCE, INTELLIGENCE_MOD, UNUSED, STAMINA_DICE],
     [UNUSED, WISDOM, WISDOM_MOD, UNUSED, PROF_BONUS],
     [UNUSED, CHARISMA, CHARISMA_MOD, UNUSED, UNUSED]
 ];
@@ -171,6 +175,7 @@ const STATS_TABLE = 0,
 PROFICIENCIES_TABLE = 1,
 ATTACK_TABLE = 2;
 FEATS_TABLE = 3;
+INVENTORY_TABLE = 4;
 
 /*
     Unchained Worlds Data
@@ -178,6 +183,7 @@ FEATS_TABLE = 3;
 
 // Weapon names
 const UNARMED = "unarmed",
+IMPROVISED_WEAPON = "improvised weapon",
 CLUB = "club",
 DAGGER = "dagger",
 GREATCLUB = "greatclub",
@@ -265,9 +271,16 @@ SLASHING = "slashing";
 
 const INVENTORY = "inventory";
 
+// Referencing core_rules.md
 const WEAPONS = new Map([
+    
     [UNARMED, {
         [ATTACK_DAMAGE]: "1",
+        [WEAPON_PROPERTIES]: [],
+        [WEAPON_TYPE]: NATURAL_WEAPON
+    }],
+    [IMPROVISED_WEAPON, {
+        [ATTACK_DAMAGE]: "1d4",
         [WEAPON_PROPERTIES]: [],
         [WEAPON_TYPE]: NATURAL_WEAPON
     }],
@@ -458,46 +471,116 @@ const WEAPONS = new Map([
     }]
 ]);
 
+// Referencing lower empire lineages from imperial_lineages.md
 const LINEAGES = new Map([
-    ["soot", {
-        strength: 2,
-        wisdom: 1,
+    ["Soot", {
+        [STRENGTH]: 2,
+        [WISDOM]: 1,
         languages: [COMMON],
-        feats: [
-            {
-                name: "Apprenticeship",
-                description: "During your childhood you worked as an apprentice to help pay the bills. You are proficient in one tool of your choice."
-            },
-            {
-                name: "Conscript",
-                description: "You were recruited and served a few months in the army before being returned. In that time you learned to wield a pole arm in formation. You are proficient with pikes.",
-                requirements: {
-                    strength: 15
-                }
-            }
-        ]
-    }]
+        feats: [],
+    }],
+    ["Hoofer", {
+        [STRENGTH]: 2,
+        [CONSTITUTION]: 2,
+        languages: [COMMON],
+        feats: [],
+    }],
+    ["Lumbear", {
+        [STRENGTH]: 2,
+        [CONSTITUTION]: 2,
+        languages: [COMMON],
+        feats: [],
+    }],
+    ["Battlecat", {
+        [STRENGTH]: 2,
+        [CONSTITUTION]: 2,
+        languages: [COMMON],
+        feats: [],
+    }],
+    ["Uprooted", {
+        [STRENGTH]: 2,
+        [CONSTITUTION]: 2,
+        languages: [COMMON],
+        feats: [],
+    }],
+    ["Wild Cat", {
+        [STRENGTH]: 1,
+        [DEXTERITY]: 2,
+        languages: [COMMON],
+        feats: [],
+    }],
+    ["Canid", {
+        [STRENGTH]: 1,
+        [DEXTERITY]: 2,
+        languages: [COMMON],
+        feats: [],
+    }],
+    ["Avian", {
+        [STRENGTH]: 1,
+        [DEXTERITY]: 2,
+        languages: [COMMON],
+        feats: [],
+    }],
+    ["Wild folk", {
+        [STRENGTH]: 1,
+        [DEXTERITY]: 2,
+        languages: [COMMON],
+        feats: [],
+    }],
+    ["Greenfoot", {
+        [DEXTERITY]: 2,
+        [WISDOM]: 1,
+        languages: [COMMON, ELVISH],
+        feats: [],
+    }],
+    ["Wayfarer", {
+        [INTELLIGENCE]: 2,
+        [WISDOM]: 1,
+        languages: [COMMON],
+        feats: [],
+    }],
 ]);
 
+// Referencing 2d4_backgrounds.md
 const BACKGROUNDS = new Map([
-    ["farmer", {
-        proficiencies: [SICKLE],
-        items: [SICKLE, "chicken", PEASANT_PACK]
+    ["urchin", {
+        proficiencies: [],
+        items: ["Common clothes", "Pet animal (rat, raccoon, possum)", [SLING]]
     }],
-    ["rat catcher", {
-        proficiencies: ["live trap"],
-        items: ["live trap", PEASANT_PACK]
+    ["Criminal", {
+        proficiencies: [],
+        items: ["Common clothes", "Crowbar", "5GP"]
+    }],
+    ["Forester", {
+        proficiencies: [],
+        items: ["Traveler's clothes", [HANDAXE], "3GP"]
+    }],
+    ["Farmer", {
+        proficiencies: [],
+        items: ["Common clothes", "Pitchfork", "2GP"]
+    }],
+    ["Potter", {
+        proficiencies: [],
+        items: ["Common clothes", "Pottery Tools", "3GP"]
+    }],
+    ["Carpenter", {
+        proficiencies: [],
+        items: ["Common clothes", "saw", [LIGHT_HAMMER], "5GP"]
+    }],
+    ["Blacksmith", {
+        proficiencies: [],
+        items: ["Common clothes", [LIGHT_HAMMER], "Iron tongs", "10GP"]
     }],
 ]);
 
 const CLASSES = new Map([
     ["commoner", {
         feats: [],
-        hit_die: "d4",
-        skill_count: 2,
-        SKILL_PROFS: [ ATHLETICS, INSIGHT, HISTORY, NATURE, RELIGION],
-        equipment: [ "(5)torch", "waterskin", CLUB],
-        [SAVE_PROFS]: [CONSTITUTION_SAVE]
+        stamina_die_size: "4",
+        skill_count: 0,
+        [SKILL_PROFS]: [],
+        equipment: [ ],
+        [SAVE_PROFS]: []
     }]
 ]);
 
@@ -619,7 +702,7 @@ function getAbilityMod(abilityScore){
 */
 
 
-function debugOpts(){
+function defaultOpts(){
     let backgrounds = [ ...BACKGROUNDS.keys() ];
     let opts = {};
     opts[STRENGTH] = 10;
@@ -628,12 +711,13 @@ function debugOpts(){
     opts[INTELLIGENCE] = 16;
     opts[WISDOM] = 18;
     opts[CHARISMA] = 8;
-    opts.roll_abilities = false;
+    opts.roll_abilities = true;
     opts[CLASS] = "commoner";
     opts[NAME] = "John Smith";
     opts[LINEAGE] = "soot";
     opts[BACKGROUND] = backgrounds[Math.floor(Math.random() * backgrounds.length)];
     opts[SKILL_PROFS] = [ACROBATICS, DECEPTION];
+    opts.roll_hitpoints = true;
     return opts;
 }
 
@@ -645,16 +729,16 @@ async function getStats(opts){
     applyLineage(stats, opts);
     applyClass(stats, opts);
     applyBackground(stats, opts);
+    await applyHitPoints(stats, opts);
     return stats;
 }
 
 
 async function applyAbilities(stats, opts){
     if(opts.roll_abilities){
-        // TODO: Async isn't populating before the mods are calculated
-        ABILITIES.forEach(async (ability) => {
+        for(const ability of ABILITIES){
             stats[ability] = await rollTotal("4d6kh3");
-        });
+        }
     }
     else{
         ABILITIES.forEach((ability) => {
@@ -664,6 +748,14 @@ async function applyAbilities(stats, opts){
     ABILITIES.forEach((ability) => {
         stats[ability + " mod"] = getAbilityMod(stats[ability]);
     });
+}
+
+async function applyHitPoints(stats, opts){
+    // Rolls hitpoints
+    let conMod = stats[CONSTITUTION_MOD] == 0 ? "+0" : ""+stats[CONSTITUTION_MOD];
+    let rollstring = stats[STAMINA_DICE] + conMod;
+    stats[MAX_HIT_POINTS] = await rollTotal(rollstring);
+    stats[HIT_POINTS] = stats[MAX_HIT_POINTS];
 }
 
 function applyLineage(stats, opts){
@@ -679,12 +771,11 @@ function applyLineage(stats, opts){
         let asi = lineage[ability];
         if(typeof(asi) !== "undefined"){
             stats[ability] += asi;
-            stats[ability + "_mod"] = getAbilityMod(stats[ability]);
+            stats[ability + " mod"] = getAbilityMod(stats[ability]);
         }
         stats[SPEED] = typeof(lineage[SPEED]) === "undefined" ? "30ft" : lineage[SPEED];
         stats[SIZE] = typeof(lineage[SIZE]) === "undefined" ? "medium" : lineage[SIZE];
     });
-
     stats[LINEAGE] = opts.lineage;
     stats[FEATS] = [];
     lineage.feats.forEach((feat) => {
@@ -728,7 +819,7 @@ function applyClass(stats, opts){
     stats[CLASS] = opts.class;
     stats[CLASS] += opts.class === "commoner" ? " 0" : " 1";
     stats[PROF_BONUS] = "+1";
-    stats[HIT_DICE] = "1" + _class.hit_die;
+    stats[STAMINA_DICE] = "1d" + _class.stamina_die_size;
     _class.feats.forEach((feat) => {
         if(isEligibleForFeat(stats, feat)){
             stats[feats].push({
@@ -749,6 +840,7 @@ function applyBackground(stats, opts){
     background.proficiencies.forEach((prof) => {
         apply_proficiency(stats, prof);
     })
+    stats[INVENTORY] = [];
     background.items.forEach(item => {
         apply_item(stats, item);
     });
@@ -810,14 +902,17 @@ function apply_proficiency(stats, prof){
     }
 }
 
-async function createActorDocument(name, biography){
+async function createActorDocument(name, biography, hitMax){
     let actor = await Actor.create({
         name: name,
         type: "character",
         folder: "30JW8wUVMABUvnly",
         img: "https://assets.forge-vtt.com/5fc57cb47467ca168ff9134a/blank.png"
     });
-    actor.data.data.biography = biography;
+    actor.update({"data.biography": biography});
+    actor.update({"data.health.max": hitMax});
+    actor.update({"data.health.value": hitMax});
+    console.log(actor);
 }
 
 
@@ -830,21 +925,37 @@ function printAllActorFolders(){
 }
 
 function build_creation_content(){
-    let content = "";
+    let content = "<form>";
     
     // Add name
-    content += `<div><label>Name</label><input id="name"></input></div>`;
+    content += `<div><label>Name</label><input name="name"></input></div>`;
 
     // Add lineage options
-    content += `<div><label>Lineage</label><select id="lineage">`;
+    content += `<div><label>Lineage</label><select name="lineage">`;
 
     let lineages_list = [ ...LINEAGES.keys() ];
     lineages_list.forEach((lineage) => {
         content += `
-            <option value "${lineage}">${lineage}</option>
+        <option value="${lineage}">${lineage}</option>
         `;
     });
     content += `</select></div><br>`;
+
+    // Add first skill choice
+    content += `<div><label>Skill prof 1</label><select name="skill1">`;
+    CLASSES.get("commoner")[SKILL_PROFS].forEach(skill => {
+        content += `<option value="${skill}">${skill}</option>`;
+    });
+    content += "</select></div>";
+
+    // Add second skill choice
+    content += `<div><label>Skill prof 2</label><select name="skill2">`;
+    CLASSES.get("commoner")[SKILL_PROFS].forEach(skill => {
+        content += `<option value="${skill}">${skill}</option>`;
+    });
+    content += "</select></div>";
+
+    content += "</form>";
 
     return content;
 }
@@ -854,7 +965,7 @@ function build_creation_buttons(){
     buttons.push({
         label: "Create Commoner",
         callback: async(html) => {
-            console.log(html);
+            await generate_from_user_opts(html);
         }
     });
     return buttons;
@@ -866,6 +977,23 @@ function creation_dialogue(){
         content: build_creation_content(),
         buttons: build_creation_buttons()
     }).render(true);
+}
+
+async function generate_from_user_opts(html){
+    const formData = new FormDataExtended(html[0]
+        .querySelector('form'))
+        .toObject();
+    console.log(formData);
+    let opts = defaultOpts();
+    opts.name = formData.name;
+    opts.lineage = formData.lineage;
+    opts[SKILL_PROFS] = [];
+    opts[SKILL_PROFS].push(formData.skill1);
+    opts[SKILL_PROFS].push(formData.skill2);
+    let stats = await getStats(opts);
+    let bio = generateBio(stats);
+    let hitMax = stats[MAX_HIT_POINTS];
+    createActorDocument(stats[NAME], bio, hitMax);
 }
 
 /*
@@ -883,6 +1011,7 @@ function generateBio(stats){
     bio += generateProficienciesTable(stats);
     bio += generateAttacksTable(stats);
     bio += generateFeatsTable(stats);
+    bio += generateInventoryTable(stats);
     return bio;
 }
 
@@ -898,8 +1027,8 @@ function generateStatsTable(stats){
     bio += `</tr>`;
     bio += `<tr>`;
     bio += `<td>STR</td>`;
-    bio += `<td>${stats[WISDOM]}</td>`;
-    bio += `<td>${stats[WISDOM_MOD]}</td>`;
+    bio += `<td>${stats[STRENGTH]}</td>`;
+    bio += `<td>${stats[STRENGTH_MOD]}</td>`;
     bio += `<td>AC: ${getArmorClass(stats)}</td>`;
     bio += `<td>${stats[CLASS]}</td>`;
     bio += `</tr>`;
@@ -922,7 +1051,7 @@ function generateStatsTable(stats){
     bio += `<td>${stats[INTELLIGENCE]}</td>`;
     bio += `<td>${stats[INTELLIGENCE_MOD]}</td>`;
     bio += `<td></td>`;
-    bio += `<td>Hit Dice: ${stats[HIT_DICE]}</td>`;
+    bio += `<td>Stamina Dice: ${stats[STAMINA_DICE]}</td>`;
     bio += `</tr>`;
     bio += `<tr>`;
     bio += `<td>WIS</td>`;
@@ -981,9 +1110,12 @@ function generateProficienciesTable(stats){
 function getActorAttacks(stats){
     let attacks = [];
     attacks = attacks.concat(getWeaponAttacks(stats, UNARMED));
+    attacks = attacks.concat(getWeaponAttacks(stats, IMPROVISED_WEAPON));
     attacks.push();
     let weapons = [ ...WEAPONS.keys() ];
+    console.log(weapons);
     stats[INVENTORY].forEach((item) => {
+        console.log("Considering " + item);
         if(weapons.includes(item)){
             attacks = attacks.concat(getWeaponAttacks(stats, item))
         }
@@ -1029,8 +1161,23 @@ function generateFeatsTable(stats){
     return bio;
 }
 
+function generateInventoryTable(stats){
+    let bio = "";
+    bio += `<table border="1"><tbody>`;
+    bio += `<tr><td>Inventory</td></tr>`;
+    stats[INVENTORY].forEach(item => {
+        bio += `<tr>`;
+        bio += `<td>${item}</td>`;
+        bio += `</tr>`;
+    });
+    bio += `</tbody></table>`;
+    return bio;
+}
+
+/*
 let stats = await getStats(debugOpts());
 let bio = generateBio(stats);
 createActorDocument(stats[NAME], bio);
+*/
 
-//creation_dialogue();
+creation_dialogue();
