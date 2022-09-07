@@ -50,12 +50,12 @@ function roll(formula){
     return new Roll(formula).roll(async=false);
 }
 
-function roll_and_display_attack(attack_formula, damage_formula, purpose){
+async function roll_and_display_attack(attack_formula, damage_formula, purpose){
     console.log(`${attack_formula}, ${damage_formula}, ${purpose}`)
-    let attack_result = roll(attack_formula);
-    let attack_result_secondary = roll(attack_formula);
-    let damage_result = roll(damage_formula);
-    let damage_result_secondary = roll(damage_formula);
+    let attack_result = await roll(attack_formula);
+    let attack_result_secondary = await roll(attack_formula);
+    let damage_result = await roll(damage_formula);
+    let damage_result_secondary = await roll(damage_formula);
     let html = generate_attack_roll_html(
         attack_result,
         attack_result_secondary,
